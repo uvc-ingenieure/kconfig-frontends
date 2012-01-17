@@ -4,6 +4,12 @@ syntax: glob
 *.o
 *.a
 
+frontends/conf/conf
+frontends/mconf/mconf
+frontends/nconf/nconf
+
+parser/?conf.c
+
 aclocal.m4
 configure
 config.h

@@ -3,7 +3,7 @@
 
 AC_PREREQ([2.67])
 AC_INIT([kconfig-frontends], [m4_esyscmd_s([cat .version])], [nobody@nowhere.org])
-AC_CONFIG_SRCDIR([menu.c])
+AC_CONFIG_SRCDIR([frontends/conf/conf.c])
 AC_CONFIG_HEADERS([config.h])
 AC_CONFIG_AUX_DIR([scripts])
 
@@ -82,5 +82,10 @@ AS_IF(
 AC_CONFIG_FILES([
     Makefile
     lxdialog/Makefile
+    parser/Makefile
+    frontends/Makefile
+    frontends/conf/Makefile
+    frontends/mconf/Makefile
+    frontends/nconf/Makefile
 ])
 AC_OUTPUT

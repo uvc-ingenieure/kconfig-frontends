@@ -9,4 +9,4 @@ liblxdialog_a_SOURCES = \
     util.c              \
     yesno.c
 
-liblxdialog_a_CFLAGS = -DCURSES_LOC='"${CURSES_LOC}"'
+liblxdialog_a_CPPFLAGS = $(AM_CPPFLAGS) -DCURSES_LOC='"${CURSES_LOC}"'
