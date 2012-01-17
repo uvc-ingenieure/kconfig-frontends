@@ -55,7 +55,7 @@ AC_SUBST([AM_YFLAGS], ["-t -l -p zconf"])
 
 #----------------------------------------
 # Check for gettext, for the kconfig frontends
-AC_SUBST([gettext])
+AC_SUBST([GETTEXT])
 AC_CHECK_HEADERS(
     [libintl.h],
     [ac_ct_gettext_hdr=$ac_header; break],
@@ -63,8 +63,9 @@ AC_CHECK_HEADERS(
 AS_IF(
     [test -n "$ac_ct_gettext_hdr"],
     [AC_CHECK_DECL(
-        [gettext],[gettext=y],
-        [AC_MSG_WARN([gettext is missing, frontends will not be localised])],
+        [gettext],,
+        [AC_MSG_WARN([gettext is missing, frontends will not be localised])
+         GETTEXT=-DKBUILD_NO_NLS],
         [#include <$ac_ct_gettext_hdr>])])
 
 #----------------------------------------

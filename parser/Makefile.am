@@ -10,6 +10,9 @@ dist_EXTRA_libkconfigparser_a_SOURCES =   \
 
 BUILT_SOURCES = hconf.c lconf.c
 
+# Can't use libkconfigparser_a_CPPFLAGS, as it breaks dependencies
+yconf.o: CPPFLAGS+=$(GETTEXT)
+
 .gperf.c:
 	$(GPERF) -t --output-file $@ -a -C -E -g -k 1,3,$$ -p -t $<
 
