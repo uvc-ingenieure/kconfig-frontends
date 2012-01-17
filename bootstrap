@@ -1,0 +1,17 @@
+#!/bin/sh
+set -e
+
+printf "Running aclocal...\n"
+aclocal -Wall --force
+
+printf "Running autoconf...\n"
+autoconf -Wall --force
+
+printf "Running autoheader...\n"
+autoheader -Wall --force
+
+printf "Running automake...\n"
+mkdir -p scripts
+automake --foreign --add-missing --copy -Wall --force
+
+printf "Done. You may now run:\n    ./configure\n"

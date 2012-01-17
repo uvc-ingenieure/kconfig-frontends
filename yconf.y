@@ -96,7 +96,7 @@ static struct menu *current_menu, *current_entry;
 
 %{
 /* Include zconf.hash.c here so it can see the token constants. */
-#include "zconf.hash.c"
+#include "hconf.c"
 %}
 
 %%
@@ -732,7 +732,7 @@ void zconfdump(FILE *out)
 	}
 }
 
-#include "zconf.lex.c"
+#include "lconf.c"
 #include "util.c"
 #include "confdata.c"
 #include "expr.c"
