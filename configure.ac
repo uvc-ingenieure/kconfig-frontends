@@ -40,6 +40,28 @@ AC_CHECK_FUNCS([ gettimeofday mkdir regcomp setlocale uname ])
 #---------------------------------------------------------------------------
 
 #----------------------------------------
+# Options to selectively enable/disable frontends
+# All are selected by default
+AC_ARG_ENABLE(
+    [conf],
+    [AS_HELP_STRING(
+        [--enable-conf],
+        [conf, the stdin-based frontend (default=yes)])])
+AC_SUBST([enable_conf], [${enable_conf:-yes}])
+AC_ARG_ENABLE(
+    [mconf],
+    [AS_HELP_STRING(
+        [--enable-mconf],
+        [mconf, the traditional ncurses-based frontend (default=yes)])])
+AC_SUBST([enable_mconf], [${enable_mconf:-yes}])
+AC_ARG_ENABLE(
+    [nconf],
+    [AS_HELP_STRING(
+        [--enable-nconf],
+        [nconf, the modern ncurses-based frontend (default=yes)])])
+AC_SUBST([enable_nconf], [${enable_nconf:-yes}])
+
+#----------------------------------------
 # Some program checks
 AC_PROG_RANLIB
 AC_PROG_LEX
@@ -89,6 +111,15 @@ AS_IF(
 # Prepare automake
 AM_INIT_AUTOMAKE
 AM_PROG_CC_C_O
+AM_CONDITIONAL(
+    [COND_conf],
+    [test "$enable_conf" = "yes"])
+AM_CONDITIONAL(
+    [COND_mconf],
+    [test "$enable_mconf" = "yes"])
+AM_CONDITIONAL(
+    [COND_nconf],
+    [test "$enable_nconf" = "yes"])
 
 #----------------------------------------
 # Finalise
