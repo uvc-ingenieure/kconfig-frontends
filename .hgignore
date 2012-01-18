@@ -5,6 +5,7 @@ syntax: glob
 *.a
 
 frontends/conf/conf
+frontends/gconf/gconf
 frontends/mconf/mconf
 frontends/nconf/nconf
 

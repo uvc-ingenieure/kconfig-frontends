@@ -9,8 +9,8 @@ AC_CONFIG_HEADERS([config.h])
 AC_CONFIG_AUX_DIR([scripts])
 
 # Checks for programs.
-AC_PROG_CXX
 AC_PROG_CC
+AC_PROG_CXX
 AC_PROG_MAKE_SET
 
 # Checks for libraries.
@@ -60,6 +60,12 @@ AC_ARG_ENABLE(
         [--enable-nconf],
         [nconf, the modern ncurses-based frontend (default=yes)])])
 AC_SUBST([enable_nconf], [${enable_nconf:-yes}])
+AC_ARG_ENABLE(
+    [gconf],
+    [AS_HELP_STRING(
+        [--enable-gconf],
+        [gconf, the GTK-based frontend (default=yes)])])
+AC_SUBST([enable_gconf], [${enable_gconf:-yes}])
 
 #----------------------------------------
 # Some program checks
@@ -108,6 +114,15 @@ AS_IF(
     [AC_MSG_ERROR([could not find curses library])])
 
 #----------------------------------------
+# Check headers and libs for gconf
+AS_IF(
+    [test "$enable_gconf" = yes ],
+    [PKG_PROG_PKG_CONFIG()
+     PKG_CHECK_MODULES(
+        [gtk],
+        [gtk+-2.0 gmodule-2.0 libglade-2.0])])
+
+#---------------------------------------------------------------------------
 # Prepare automake
 AM_INIT_AUTOMAKE
 AM_PROG_CC_C_O
@@ -120,6 +135,9 @@ AM_CONDITIONAL(
 AM_CONDITIONAL(
     [COND_nconf],
     [test "$enable_nconf" = "yes"])
+AM_CONDITIONAL(
+    [COND_gconf],
+    [test "$enable_gconf" = "yes"])
 
 #----------------------------------------
 # Finalise
@@ -131,5 +149,6 @@ AC_CONFIG_FILES([
     frontends/conf/Makefile
     frontends/mconf/Makefile
     frontends/nconf/Makefile
+    frontends/gconf/Makefile
 ])
 AC_OUTPUT

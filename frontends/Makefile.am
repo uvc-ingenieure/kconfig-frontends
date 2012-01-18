@@ -7,4 +7,7 @@ endif
 if COND_nconf
     MAYBE_nconf = nconf
 endif
-SUBDIRS = $(MAYBE_conf) $(MAYBE_mconf) $(MAYBE_nconf)
+if COND_gconf
+    MAYBE_gconf = gconf
+endif
+SUBDIRS = $(MAYBE_conf) $(MAYBE_mconf) $(MAYBE_nconf) $(MAYBE_gconf)
