@@ -66,6 +66,12 @@ AC_ARG_ENABLE(
         [--enable-gconf],
         [gconf, the GTK-based frontend (default=yes)])])
 AC_SUBST([enable_gconf], [${enable_gconf:-yes}])
+AC_ARG_ENABLE(
+    [qconf],
+    [AS_HELP_STRING(
+        [--enable-qconf],
+        [qconf, the QT-based frontend (default=yes)])])
+AC_SUBST([enable_qconf], [${enable_qconf:-yes}])
 
 #----------------------------------------
 # Some program checks
@@ -114,13 +120,27 @@ AS_IF(
     [AC_MSG_ERROR([could not find curses library])])
 
 #----------------------------------------
+# Check pkg-config if needed
+AS_IF(
+    [test    "$enable_gconf" = "yes"    \
+          -o "$enable_qconf" = "yes"],
+    [PKG_PROG_PKG_CONFIG()])
+
+#----------------------------------------
 # Check headers and libs for gconf
 AS_IF(
     [test "$enable_gconf" = yes ],
-    [PKG_PROG_PKG_CONFIG()
-     PKG_CHECK_MODULES(
+    [PKG_CHECK_MODULES(
         [gtk],
         [gtk+-2.0 gmodule-2.0 libglade-2.0])])
+
+#----------------------------------------
+# Check headers and libs for gconf
+AS_IF(
+    [test "$enable_qconf" = "yes"],
+    [PKG_CHECK_MODULES(
+        [qt4],
+        [QtCore QtGui Qt3Support])])
 
 #---------------------------------------------------------------------------
 # Prepare automake
@@ -138,6 +158,9 @@ AM_CONDITIONAL(
 AM_CONDITIONAL(
     [COND_gconf],
     [test "$enable_gconf" = "yes"])
+AM_CONDITIONAL(
+    [COND_qconf],
+    [test "$enable_qconf" = "yes"])
 
 #----------------------------------------
 # Finalise
@@ -151,5 +174,6 @@ AC_CONFIG_FILES([
     frontends/mconf/Makefile
     frontends/nconf/Makefile
     frontends/gconf/Makefile
+    frontends/qconf/Makefile
 ])
 AC_OUTPUT

@@ -8,6 +8,8 @@ frontends/conf/conf
 frontends/gconf/gconf
 frontends/mconf/mconf
 frontends/nconf/nconf
+frontends/qconf/qconf
+frontends/qconf/qconf.moc
 
 libs/parser/?conf.c
 
