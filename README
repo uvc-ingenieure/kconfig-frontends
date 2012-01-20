@@ -1,0 +1,12 @@
+This directory contains the kconfig frontends and parser.
+
+Kconfig is the configuration language used by the Linux kernel.
+This package is a simple copy of the frontends and the parser found
+in the Linux kernel source tree, with very minor changes to adapt
+them to being built out of the kernel build infrastructure.
+
+This package does *not* take any change to the parser or frontends.
+Such changes shall be directed directly to the appropriate mailing
+list, and they will eventually find their way is this package at
+the next sync:
+    mailto:linux-kbuild@vger.kernel.org
