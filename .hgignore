@@ -9,7 +9,7 @@ frontends/gconf/gconf
 frontends/mconf/mconf
 frontends/nconf/nconf
 
-parser/?conf.c
+libs/parser/?conf.c
 
 aclocal.m4
 configure
@@ -20,8 +20,6 @@ config.status
 
 Makefile
 Makefile.in
-lxdialog/Makefile
-lxdialog/Makefile.in
 stamp-h1
 
 .deps/

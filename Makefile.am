@@ -1,1 +1,1 @@
-SUBDIRS = lxdialog parser frontends
+SUBDIRS = libs frontends

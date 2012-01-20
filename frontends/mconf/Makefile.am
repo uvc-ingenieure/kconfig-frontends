@@ -4,5 +4,7 @@ mconf_SOURCES = mconf.c
 mconf_CPPFLAGS = $(AM_CPPFLAGS)                 \
                  -DCURSES_LOC='"${CURSES_LOC}"' \
                  $(GETTEXT)                     \
-                 -I../../parser
-mconf_LDADD = ../../parser/libkconfigparser.a ../../lxdialog/liblxdialog.a
+                 -I../../libs                   \
+                 -I../../libs/parser
+mconf_LDADD = ../../libs/parser/libkconfigparser.a  \
+              ../../libs/lxdialog/liblxdialog.a

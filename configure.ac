@@ -143,8 +143,9 @@ AM_CONDITIONAL(
 # Finalise
 AC_CONFIG_FILES([
     Makefile
-    lxdialog/Makefile
-    parser/Makefile
+    libs/Makefile
+    libs/lxdialog/Makefile
+    libs/parser/Makefile
     frontends/Makefile
     frontends/conf/Makefile
     frontends/mconf/Makefile
