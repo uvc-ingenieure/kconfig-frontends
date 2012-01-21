@@ -1,3 +1,20 @@
+
+The kconfig parser and frontends are extracted from the Linux kernel
+source tree, which is covered by the GPLv2 only. As Linus Torvalds puts it:
+
+ > Also note that the only valid version of the GPL as far as the kernel
+ > is concerned is _this_ particular version of the license (ie v2, not
+ > v2.2 or v3.x or whatever), unless explicitly otherwise stated.
+
+Although the above quote explictly mentions the Linux kernel, it is my
+understanding that the whole Linux kernel source tree is covered by this
+sentence, even non-kernel source code. As such, the license that applies
+to the kconfig parser and frontends, as published in this package, are
+also covered by this sentence, and available under the GPLv2, and not any
+other version of the GPL, unless otherwise stated.
+
+----------------------------------------
+
 		    GNU GENERAL PUBLIC LICENSE
 		       Version 2, June 1991
 
