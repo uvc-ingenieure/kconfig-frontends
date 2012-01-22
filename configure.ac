@@ -45,31 +45,31 @@ AC_CHECK_FUNCS([ gettimeofday mkdir regcomp setlocale uname ])
 AC_ARG_ENABLE(
     [conf],
     [AS_HELP_STRING(
-        [--enable-conf],
+        [--disable-conf],
         [conf, the stdin-based frontend (default=yes)])])
 AC_SUBST([enable_conf], [${enable_conf:-yes}])
 AC_ARG_ENABLE(
     [mconf],
     [AS_HELP_STRING(
-        [--enable-mconf],
+        [--disable-mconf],
         [mconf, the traditional ncurses-based frontend (default=yes)])])
 AC_SUBST([enable_mconf], [${enable_mconf:-yes}])
 AC_ARG_ENABLE(
     [nconf],
     [AS_HELP_STRING(
-        [--enable-nconf],
+        [--disable-nconf],
         [nconf, the modern ncurses-based frontend (default=yes)])])
 AC_SUBST([enable_nconf], [${enable_nconf:-yes}])
 AC_ARG_ENABLE(
     [gconf],
     [AS_HELP_STRING(
-        [--enable-gconf],
+        [--disable-gconf],
         [gconf, the GTK-based frontend (default=yes)])])
 AC_SUBST([enable_gconf], [${enable_gconf:-yes}])
 AC_ARG_ENABLE(
     [qconf],
     [AS_HELP_STRING(
-        [--enable-qconf],
+        [--disable-qconf],
         [qconf, the QT-based frontend (default=yes)])])
 AC_SUBST([enable_qconf], [${enable_qconf:-yes}])
 
