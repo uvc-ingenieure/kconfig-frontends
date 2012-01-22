@@ -7,8 +7,8 @@ my_name="${0##*/}"
 k_dir="${1}"
 if [ -n "${k_dir}" -a -d "${k_dir}/kernel" ]; then
     # Get the version
-    eval $( head -n 5 "${k_dir}/Makefile"               \
-            |sed -r -e 's/^/K_/; s/ = ?/="/; s/$/"/;'   \
+    eval $( head -n 5 "${k_dir}/Makefile"                       \
+            |sed -r -e 's/^/K_/; s/"//g; s/ = ?/="/; s/$/"/;'   \
           )
     printf "Found Linux kernel %d.%d.%d%s '%s'\n"           \
           "${K_VERSION}" "${K_PATCHLEVEL}" "${K_SUBLEVEL}"  \
