@@ -4,8 +4,8 @@ my_name="${0##*/}"
 
 # If an argument is given, it's the location
 # of the Linux kernel source tree
-if [ -n "${1}" -a -d "${1}/kernel" ]; then
-    k_dir="${1}"
+k_dir="${1}"
+if [ -n "${k_dir}" -a -d "${k_dir}/kernel" ]; then
     # Get the version
     eval $( head -n 5 "${k_dir}/Makefile"               \
             |sed -r -e 's/^/K_/; s/ = ?/="/; s/$/"/;'   \
@@ -14,7 +14,7 @@ if [ -n "${1}" -a -d "${1}/kernel" ]; then
           "${K_VERSION}" "${K_PATCHLEVEL}" "${K_SUBLEVEL}"  \
           "${K_EXTRAVERSION}" "${K_NAME}"
 else
-    if [ -z "${1}" ]; then
+    if [ -n "${k_dir}" ]; then
         printf "%s: \`%s': not a Linux kernel source tree\n"    \
                "${my_name}" "${k_dir}"
     else
