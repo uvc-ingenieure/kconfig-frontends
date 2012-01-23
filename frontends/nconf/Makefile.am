@@ -4,5 +4,4 @@ nconf_SOURCES = nconf.c nconf.gui.c nconf.h
 nconf_CPPFLAGS = $(AM_CPPFLAGS)     \
                  $(GETTEXT)         \
                  -I../../libs/parser
-nconf_LDADD = -lmenu -lpanel        \
-              ../../libs/parser/libkconfigparser.a
+nconf_LDADD = ../../libs/parser/libkconfigparser.a

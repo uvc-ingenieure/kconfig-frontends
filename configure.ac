@@ -104,20 +104,46 @@ AS_IF(
 
 #----------------------------------------
 # Check for ncurses, for the kconfig frontends
-AC_SUBST([CURSES_LOC])
-AC_CHECK_HEADERS(
-    [ncurses/ncurses.h ncurses/curses.h ncursesw/curses.h ncurses.h curses.h],
-    [CURSES_LOC=$ac_header; break])
 AS_IF(
-    [test -z "$CURSES_LOC"],
-    [AC_MSG_ERROR([could not find curses headers])])
-AC_SEARCH_LIBS(
-    [initscr],
-    [ncursesw ncurses curses],
-    [ac_ct_curses_lib_found=yes; break])
+    [test "$enable_mconf" = "yes" -o "$enable_nconf" = "yes"],
+    [AC_SUBST([CURSES_LOC])
+     AC_CHECK_HEADERS(
+        [ncurses/ncurses.h ncurses/curses.h ncursesw/curses.h ncurses.h curses.h],
+        [CURSES_LOC=$ac_header; break])
+     AS_IF(
+        [test -z "$CURSES_LOC"],
+        [AC_MSG_ERROR([could not find curses headers])])
+     AC_SEARCH_LIBS(
+        [initscr],
+        [ncursesw ncurses curses],
+        [ac_ct_curses_lib_found=yes; break])
+     AS_IF(
+        [test -z "$ac_ct_curses_lib_found"],
+        [AC_MSG_ERROR([could not find curses library])])])
+
 AS_IF(
-    [test -z "$ac_ct_curses_lib_found"],
-    [AC_MSG_ERROR([could not find curses library])])
+    [test "$enable_nconf" = "yes"],
+    [AC_SEARCH_LIBS(
+        [new_panel],
+        [panel],
+        [ac_ct_panel_lib_found=yes; break])
+     AS_IF(
+        [test -z "$ac_ct_panel_lib_found"],
+        [AC_MSG_ERROR([could not find libpanel library])])
+     AC_SEARCH_LIBS(
+        [menu_init],
+        [menu],
+        [ac_ct_menu_lib_found=yes; break])
+     AS_IF(
+        [test -z "$ac_ct_panel_lib_found"],
+        [AC_MSG_ERROR([could not find libmenu library])])])
+
+#----------------------------------------
+# Check if the lxdialog library should be built
+AS_IF(
+    [test "$enable_mconf" = "yes"],
+    [need_lxdialog=yes],
+    [need_lxdialog=no])
 
 #----------------------------------------
 # Check pkg-config if needed
@@ -161,6 +187,9 @@ AM_CONDITIONAL(
 AM_CONDITIONAL(
     [COND_qconf],
     [test "$enable_qconf" = "yes"])
+AM_CONDITIONAL(
+    [COND_lxdialog],
+    [test "$need_lxdialog" = "yes"])
 
 #----------------------------------------
 # Finalise
