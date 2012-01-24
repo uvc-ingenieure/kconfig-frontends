@@ -209,3 +209,20 @@ AC_CONFIG_FILES([
     frontends/qconf/Makefile
 ])
 AC_OUTPUT
+
+AC_MSG_NOTICE([Configured with:])
+AS_IF([test "$enable_conf" = "yes"],
+      [AC_MSG_NOTICE([  - conf:  yes])],
+      [AC_MSG_NOTICE([  - conf:  no])])
+AS_IF([test "$enable_gconf" = "yes"],
+      [AC_MSG_NOTICE([  - gconf: yes])],
+      [AC_MSG_NOTICE([  - gconf: no])])
+AS_IF([test "$enable_mconf" = "yes"],
+      [AC_MSG_NOTICE([  - mconf: yes])],
+      [AC_MSG_NOTICE([  - mconf: no])])
+AS_IF([test "$enable_nconf" = "yes"],
+      [AC_MSG_NOTICE([  - nconf: yes])],
+      [AC_MSG_NOTICE([  - nconf: no])])
+AS_IF([test "$enable_qconf" = "yes"],
+      [AC_MSG_NOTICE([  - qconf: yes])],
+      [AC_MSG_NOTICE([  - qconf: no])])
