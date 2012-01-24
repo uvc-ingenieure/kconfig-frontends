@@ -49,32 +49,32 @@ AC_ARG_ENABLE(
     [conf],
     [AS_HELP_STRING(
         [--disable-conf],
-        [conf, the stdin-based frontend (default=yes)])])
-AC_SUBST([enable_conf], [${enable_conf:-yes}])
+        [conf, the stdin-based frontend (default=enabled)])])
+AC_SUBST([enable_conf], [${enable_conf:-auto}])
 AC_ARG_ENABLE(
     [mconf],
     [AS_HELP_STRING(
         [--disable-mconf],
-        [mconf, the traditional ncurses-based frontend (default=yes)])])
-AC_SUBST([enable_mconf], [${enable_mconf:-yes}])
+        [mconf, the traditional ncurses-based frontend (default=enabled)])])
+AC_SUBST([enable_mconf], [${enable_mconf:-auto}])
 AC_ARG_ENABLE(
     [nconf],
     [AS_HELP_STRING(
         [--disable-nconf],
-        [nconf, the modern ncurses-based frontend (default=yes)])])
-AC_SUBST([enable_nconf], [${enable_nconf:-yes}])
+        [nconf, the modern ncurses-based frontend (default=enabled)])])
+AC_SUBST([enable_nconf], [${enable_nconf:-auto}])
 AC_ARG_ENABLE(
     [gconf],
     [AS_HELP_STRING(
         [--disable-gconf],
-        [gconf, the GTK-based frontend (default=yes)])])
-AC_SUBST([enable_gconf], [${enable_gconf:-yes}])
+        [gconf, the GTK-based frontend (default=enabled)])])
+AC_SUBST([enable_gconf], [${enable_gconf:-auto}])
 AC_ARG_ENABLE(
     [qconf],
     [AS_HELP_STRING(
         [--disable-qconf],
-        [qconf, the QT-based frontend (default=yes)])])
-AC_SUBST([enable_qconf], [${enable_qconf:-yes}])
+        [qconf, the QT-based frontend (default=enabled)])])
+AC_SUBST([enable_qconf], [${enable_qconf:-auto}])
 
 #----------------------------------------
 # Some program checks
@@ -106,70 +106,139 @@ AS_IF(
         [#include <$ac_ct_gettext_hdr>])])
 
 #----------------------------------------
-# Check for ncurses, for the kconfig frontends
+# Check for ncurses, for the mconf & nconf frontends
+AS_CASE(
+    ["$enable_mconf":"$enable_nconf"],
+    [yes:*],  [need_curses=yes],
+    [*:yes],  [need_curses=yes],
+    [auto:*], [need_curses=auto],
+    [*:auto], [need_curses=auto],
+              [need_curses=no])
+
 AS_IF(
-    [test "$enable_mconf" = "yes" -o "$enable_nconf" = "yes"],
+    [test "$need_curses" = "yes" -o "$need_curses" = "auto"],
     [AC_SUBST([CURSES_LOC])
      AC_CHECK_HEADERS(
         [ncurses/ncurses.h ncurses/curses.h ncursesw/curses.h ncurses.h curses.h],
         [CURSES_LOC=$ac_header; break])
      AS_IF(
         [test -z "$CURSES_LOC"],
-        [AC_MSG_ERROR([could not find curses headers])])
+        [AS_IF(
+            [test "$need_curses" = "yes"],
+            [AC_MSG_ERROR([could not find curses headers (frontends: mconf/nconf)])],
+            [has_curses=no])])
      AC_SEARCH_LIBS(
         [initscr],
         [ncursesw ncurses curses],
         [ac_ct_curses_lib_found=yes; break])
      AS_IF(
         [test -z "$ac_ct_curses_lib_found"],
-        [AC_MSG_ERROR([could not find curses library])])])
+        [AS_IF(
+            [test "$need_curses" = "yes"],
+            [AC_MSG_ERROR([could not find curses library (frontends: mconf/nconf)])],
+            [has_curses=no])])])
 
 AS_IF(
-    [test "$enable_nconf" = "yes"],
+    [test "$has_curses" = "no" ],
+    [enable_mconf=no; enable_nconf=no])
+
+#----------------------------------------
+# Check for libpanel and libmenu, for the nconf frontend
+[need_panel_menu="$enable_nconf"]
+
+AS_IF(
+    [test "$need_panel_menu" = "yes" -o "$need_panel_menu" = "auto"],
     [AC_SEARCH_LIBS(
         [new_panel],
         [panel],
         [ac_ct_panel_lib_found=yes; break])
      AS_IF(
         [test -z "$ac_ct_panel_lib_found"],
-        [AC_MSG_ERROR([could not find libpanel library])])
+        [AS_IF(
+            [test "$need_panel_menu" = "yes"],
+            [AC_MSG_ERROR([could not find libpanel library (frontend: nconf)])],
+            [has_panel_menu=no])])
      AC_SEARCH_LIBS(
         [menu_init],
         [menu],
         [ac_ct_menu_lib_found=yes; break])
      AS_IF(
         [test -z "$ac_ct_panel_lib_found"],
-        [AC_MSG_ERROR([could not find libmenu library])])])
+        [AS_IF(
+            [test "$need_panel_menu" = "yes"],
+            [AC_MSG_ERROR([could not find libmenu library (frontend: nconf)])],
+            [has_panel_menu=no])])])
+
+AS_IF(
+    [test "$has_panel_menu" = "no" ],
+    [enable_nconf=no])
 
 #----------------------------------------
 # Check if the lxdialog library should be built
 AS_IF(
-    [test "$enable_mconf" = "yes"],
+    [test "$enable_mconf" = "yes" -o "$enable_mconf" = "auto"],
     [need_lxdialog=yes],
     [need_lxdialog=no])
 
 #----------------------------------------
 # Check pkg-config if needed
+AS_CASE(
+    ["$enable_gconf":"$enable_qconf"],
+    [yes:*],  [need_pkgconfig=yes],
+    [*:yes],  [need_pkgconfig=yes],
+    [auto:*], [need_pkgconfig=yes],
+    [*:auto], [need_pkgconfig=yes],
+              [need_pkgconfig=no ])
+
 AS_IF(
-    [test    "$enable_gconf" = "yes"    \
-          -o "$enable_qconf" = "yes"],
+    [test "$need_pkgconfig" = "yes"],
     [PKG_PROG_PKG_CONFIG()])
 
 #----------------------------------------
 # Check headers and libs for gconf
+[need_gtk="$enable_gconf"]
+
 AS_IF(
-    [test "$enable_gconf" = yes ],
+    [test "$need_gtk" = "yes" -o "$need_gtk" = "auto"],
     [PKG_CHECK_MODULES(
         [gtk],
-        [gtk+-2.0 gmodule-2.0 libglade-2.0])])
+        [gtk+-2.0 gmodule-2.0 libglade-2.0],
+        [has_gtk=yes],
+        [AS_IF(
+            [test "$need_gtk" = "yes"],
+            [AC_MSG_ERROR([could not find GTK+ headers and/or libraries (frontend: gconf)])],
+            [has_gtk=no])])])
+
+AS_IF(
+    [test "$has_gtk" = "no" ],
+    [enable_gconf=no])
 
 #----------------------------------------
 # Check headers and libs for gconf
+[need_qt="$enable_qconf"]
+
 AS_IF(
-    [test "$enable_qconf" = "yes"],
+    [test "$need_qt" = "yes" -o "$need_qt" = "auto"],
     [PKG_CHECK_MODULES(
         [qt4],
-        [QtCore QtGui Qt3Support])])
+        [QtCore QtGui Qt3Support],
+        [has_qt=yes],
+        [AS_IF(
+            [test "$need_qt" = "yes"],
+            [AC_MSG_ERROR([could not find QT4 headers and/or libraries (frontend: qconf)])],
+            [has_qt=no])])])
+
+AS_IF(
+    [test "$has_qt" = "no" ],
+    [enable_qconf=no])
+
+#---------------------------------------------------------------------------
+# Now, we know what frontends to enable
+AS_IF([test "$enable_conf"  = "auto"], [enable_conf=yes ])
+AS_IF([test "$enable_gconf" = "auto"], [enable_gconf=yes])
+AS_IF([test "$enable_mconf" = "auto"], [enable_mconf=yes])
+AS_IF([test "$enable_nconf" = "auto"], [enable_nconf=yes])
+AS_IF([test "$enable_qconf" = "auto"], [enable_qconf=yes])
 
 #---------------------------------------------------------------------------
 # Prepare automake
