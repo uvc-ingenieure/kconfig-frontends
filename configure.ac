@@ -2,7 +2,10 @@
 # Process this file with autoconf to produce a configure script.
 
 AC_PREREQ([2.67])
-AC_INIT([kconfig-frontends], [m4_esyscmd_s([cat .version])], [nobody@nowhere.org])
+AC_INIT(
+    [kconfig-frontends],
+    [m4_esyscmd_s([./scripts/version.sh])],
+    [nobody@nowhere.org])
 AC_CONFIG_SRCDIR([frontends/conf/conf.c])
 # Use a config.h to avoid brazilions -DHAVE_FOO on compile lines
 AC_CONFIG_HEADERS([config.h])
