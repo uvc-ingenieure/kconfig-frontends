@@ -9,7 +9,7 @@ qconf_CPPFLAGS = $(AM_CPPFLAGS)     \
 qconf_CXXFLAGS = $(AM_CXXFLAGS) \
                  $(qt4_CFLAGS)
 qconf_LDADD = $(qt4_LIBS)                           \
-              ../../libs/parser/libkconfigparser.a
+              ../../libs/parser/libkconfigparser.la
 
 .h.moc:
 	moc -i $< -o $@

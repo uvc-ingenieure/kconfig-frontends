@@ -6,5 +6,5 @@ mconf_CPPFLAGS = $(AM_CPPFLAGS)                 \
                  $(GETTEXT)                     \
                  -I../../libs                   \
                  -I../../libs/parser
-mconf_LDADD = ../../libs/parser/libkconfigparser.a  \
+mconf_LDADD = ../../libs/parser/libkconfigparser.la \
               ../../libs/lxdialog/liblxdialog.a

@@ -78,7 +78,6 @@ AC_SUBST([enable_qconf], [${enable_qconf:-auto}])
 
 #----------------------------------------
 # Some program checks
-AC_PROG_RANLIB
 AC_PROG_LEX
 AC_PROG_YACC
 AC_CHECK_PROGS(
@@ -262,6 +261,10 @@ AM_CONDITIONAL(
 AM_CONDITIONAL(
     [COND_lxdialog],
     [test "$need_lxdialog" = "yes"])
+
+#---------------------------------------------------------------------------
+# Prepare libtool
+LT_INIT([disable-static])
 
 #----------------------------------------
 # Finalise

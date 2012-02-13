@@ -9,6 +9,6 @@ gconf_CPPFLAGS = $(AM_CPPFLAGS)         \
 gconf_CFLAGS = $(AM_CFLAGS) \
                $(gtk_CFLAGS)
 gconf_LDADD = $(gtk_LIBS)                           \
-              ../../libs/parser/libkconfigparser.a
+              ../../libs/parser/libkconfigparser.la
 gconfdir = $(pkgdatadir)
 gconf_DATA = gconf.glade

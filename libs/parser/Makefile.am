@@ -1,12 +1,13 @@
 SUFFIXES = .gperf
 
-noinst_LIBRARIES = libkconfigparser.a
-
-libkconfigparser_a_SOURCES = yconf.y
-dist_EXTRA_libkconfigparser_a_SOURCES =   \
+lib_LTLIBRARIES = libkconfigparser.la
+libkconfigparser_la_SOURCES = yconf.y
+dist_EXTRA_libkconfigparser_la_SOURCES =  \
     hconf.gperf lconf.l                   \
     confdata.c menu.c symbol.c util.c     \
     expr.c expr.h lkc.h lkc_proto.h
+
+include_HEADERS = expr.h lkc.h lkc_proto.h
 
 BUILT_SOURCES = hconf.c lconf.c
 

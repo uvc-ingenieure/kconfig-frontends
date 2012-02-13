@@ -1,6 +1,9 @@
 #!/bin/sh
 set -e
 
+printf "Running libtoolize...\n"
+libtoolize --copy --force
+
 printf "Running aclocal...\n"
 aclocal -Wall --force
 

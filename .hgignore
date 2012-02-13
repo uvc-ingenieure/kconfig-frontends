@@ -2,7 +2,10 @@ syntax: glob
 
 .*.swp
 *.o
+*.lo
 *.a
+*.la
+*.lai
 
 frontends/conf/conf
 frontends/gconf/gconf
@@ -12,6 +15,8 @@ frontends/qconf/qconf
 frontends/qconf/qconf.moc
 
 libs/parser/?conf.c
+libs/*/.libs
+frontends/*/.libs
 
 aclocal.m4
 configure
@@ -19,6 +24,7 @@ config.h
 config.h.in
 config.log
 config.status
+libtool
 
 Makefile
 Makefile.in
