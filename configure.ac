@@ -102,6 +102,7 @@ AC_ARG_ENABLE(
     [for f in conf mconf nconf gconf qconf; do
         AS_CASE(
             ["$enableval"],
+            [yes],      [eval enable_$f=yes],
             ["$f"],     [eval enable_$f=yes],
             ["$f",*],   [eval enable_$f=yes],
             [*,"$f"],   [eval enable_$f=yes],
