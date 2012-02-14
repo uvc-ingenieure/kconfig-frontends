@@ -92,6 +92,24 @@ AC_ARG_ENABLE(
         [qconf, the QT-based frontend (default=auto)])])
 AC_SUBST([enable_qconf], [${enable_qconf:-auto}])
 
+AC_ARG_ENABLE(
+    [frontends],
+    [AS_HELP_STRING(
+        [--enable-frontends=list],
+        [enables only the set of frontends in comma-separated 'list'
+         (default: auto selection), takes precedence over all
+         --enable-*conf, above])],
+    [for f in conf mconf nconf gconf qconf; do
+        AS_CASE(
+            ["$enableval"],
+            ["$f"],     [eval enable_$f=yes],
+            ["$f",*],   [eval enable_$f=yes],
+            [*,"$f"],   [eval enable_$f=yes],
+            [*,"$f",*], [eval enable_$f=yes],
+                        [eval enable_$f=no])
+     done])
+AC_SUBST([enable_frontends])
+
 #----------------------------------------
 # Some program checks
 AC_PROG_LEX
