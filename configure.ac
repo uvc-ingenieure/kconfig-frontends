@@ -43,6 +43,22 @@ AC_CHECK_FUNCS([ gettimeofday mkdir regcomp setlocale uname ])
 #---------------------------------------------------------------------------
 
 #----------------------------------------
+# Set misc options
+# Although there is a default (="linux") in the code, we do provide
+# a default here, to get a consistent autostuff behavior
+AC_ARG_ENABLE(
+    [package-name],
+    [AS_HELP_STRING(
+        [--enable-package-name],
+        [set the package name (default=kconfig-frontends)])],
+    [AS_CASE(
+        ["$enableval"],
+        [yes], [package_name=$PACKAGE_NAME],
+        [no],  [package_name=],
+               [package_name=$enableval])])
+AC_SUBST([package_name], [${package_name=$PACKAGE_NAME}])
+
+#----------------------------------------
 # Options to selectively enable/disable frontends
 # All are selected by default
 AC_ARG_ENABLE(
@@ -297,6 +313,7 @@ AC_CONFIG_FILES([
 AC_OUTPUT
 
 AC_MSG_NOTICE([Configured with:])
+AC_MSG_NOTICE([- package name: '$package_name'])
 AC_MSG_NOTICE([- frontends:])
 AS_IF([test "$enable_conf" = "yes"],
       [AC_MSG_NOTICE([  - conf:  yes])],
