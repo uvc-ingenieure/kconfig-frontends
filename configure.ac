@@ -267,6 +267,12 @@ AM_CONDITIONAL(
 LT_INIT([disable-static])
 
 #----------------------------------------
+# Get the version to apply to the parser shared library
+AC_SUBST(
+    [KCONFIGPARSER_LIB_VERSION],
+    [m4_esyscmd_s([./scripts/version.sh --plain])])
+
+#----------------------------------------
 # Finalise
 AC_CONFIG_FILES([
     Makefile
@@ -298,3 +304,9 @@ AS_IF([test "$enable_nconf" = "yes"],
 AS_IF([test "$enable_qconf" = "yes"],
       [AC_MSG_NOTICE([  - qconf: yes])],
       [AC_MSG_NOTICE([  - qconf: no])])
+AS_IF([test "$enable_shared" = "yes"],
+      [AC_MSG_NOTICE([  - parser shared library: yes, $KCONFIGPARSER_LIB_VERSION])],
+      [AC_MSG_NOTICE([  - parser shared library: no])])
+AS_IF([test "$enable_static" = "yes"],
+      [AC_MSG_NOTICE([  - parser static library: yes])],
+      [AC_MSG_NOTICE([  - parser static library: no])])

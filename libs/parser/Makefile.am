@@ -6,6 +6,7 @@ dist_EXTRA_libkconfigparser_la_SOURCES =  \
     hconf.gperf lconf.l                   \
     confdata.c menu.c symbol.c util.c     \
     expr.c expr.h lkc.h lkc_proto.h
+libkconfigparser_la_LDFLAGS = -release $(KCONFIGPARSER_LIB_VERSION)
 
 include_HEADERS = expr.h lkc.h lkc_proto.h
 
