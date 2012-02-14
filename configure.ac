@@ -65,31 +65,31 @@ AC_ARG_ENABLE(
     [conf],
     [AS_HELP_STRING(
         [--disable-conf],
-        [conf, the stdin-based frontend (default=enabled)])])
+        [conf, the stdin-based frontend (default=auto)])])
 AC_SUBST([enable_conf], [${enable_conf:-auto}])
 AC_ARG_ENABLE(
     [mconf],
     [AS_HELP_STRING(
         [--disable-mconf],
-        [mconf, the traditional ncurses-based frontend (default=enabled)])])
+        [mconf, the traditional ncurses-based frontend (default=auto)])])
 AC_SUBST([enable_mconf], [${enable_mconf:-auto}])
 AC_ARG_ENABLE(
     [nconf],
     [AS_HELP_STRING(
         [--disable-nconf],
-        [nconf, the modern ncurses-based frontend (default=enabled)])])
+        [nconf, the modern ncurses-based frontend (default=auto)])])
 AC_SUBST([enable_nconf], [${enable_nconf:-auto}])
 AC_ARG_ENABLE(
     [gconf],
     [AS_HELP_STRING(
         [--disable-gconf],
-        [gconf, the GTK-based frontend (default=enabled)])])
+        [gconf, the GTK-based frontend (default=auto)])])
 AC_SUBST([enable_gconf], [${enable_gconf:-auto}])
 AC_ARG_ENABLE(
     [qconf],
     [AS_HELP_STRING(
         [--disable-qconf],
-        [qconf, the QT-based frontend (default=enabled)])])
+        [qconf, the QT-based frontend (default=auto)])])
 AC_SUBST([enable_qconf], [${enable_qconf:-auto}])
 
 #----------------------------------------
