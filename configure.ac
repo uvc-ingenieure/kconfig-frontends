@@ -289,6 +289,7 @@ AC_CONFIG_FILES([
 AC_OUTPUT
 
 AC_MSG_NOTICE([Configured with:])
+AC_MSG_NOTICE([- frontends:])
 AS_IF([test "$enable_conf" = "yes"],
       [AC_MSG_NOTICE([  - conf:  yes])],
       [AC_MSG_NOTICE([  - conf:  no])])
@@ -304,9 +305,8 @@ AS_IF([test "$enable_nconf" = "yes"],
 AS_IF([test "$enable_qconf" = "yes"],
       [AC_MSG_NOTICE([  - qconf: yes])],
       [AC_MSG_NOTICE([  - qconf: no])])
+AC_MSG_NOTICE([- parser library:])
 AS_IF([test "$enable_shared" = "yes"],
-      [AC_MSG_NOTICE([  - parser shared library: yes, $KCONFIGPARSER_LIB_VERSION])],
-      [AC_MSG_NOTICE([  - parser shared library: no])])
-AS_IF([test "$enable_static" = "yes"],
-      [AC_MSG_NOTICE([  - parser static library: yes])],
-      [AC_MSG_NOTICE([  - parser static library: no])])
+      [AC_MSG_NOTICE([  - shared: yes, versioned $KCONFIGPARSER_LIB_VERSION])],
+      [AC_MSG_NOTICE([  - shared: no])])
+AC_MSG_NOTICE([  - static: $enable_static])
