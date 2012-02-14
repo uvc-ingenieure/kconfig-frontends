@@ -117,6 +117,8 @@ AS_CASE(
 AS_IF(
     [test "$need_curses" = "yes" -o "$need_curses" = "auto"],
     [AC_SUBST([CURSES_LOC])
+     AC_SUBST([ncurses_LIBS])
+     LIBS_old="$LIBS"
      AC_CHECK_HEADERS(
         [ncurses/ncurses.h ncurses/curses.h ncursesw/curses.h ncurses.h curses.h],
         [CURSES_LOC=$ac_header; break])
@@ -135,7 +137,9 @@ AS_IF(
         [AS_IF(
             [test "$need_curses" = "yes"],
             [AC_MSG_ERROR([could not find curses library (frontends: mconf/nconf)])],
-            [has_curses=no])])])
+            [has_curses=no])])
+     ncurses_LIBS="$LIBS"
+     LIBS=$LIBS_old])
 
 AS_IF(
     [test "$has_curses" = "no" ],
@@ -147,7 +151,9 @@ AS_IF(
 
 AS_IF(
     [test "$need_panel_menu" = "yes" -o "$need_panel_menu" = "auto"],
-    [AC_SEARCH_LIBS(
+    [AC_SUBST([ncurses_extra_LIBS])
+     LIBS_old="$LIBS"
+     AC_SEARCH_LIBS(
         [new_panel],
         [panel],
         [ac_ct_panel_lib_found=yes; break])
@@ -166,7 +172,9 @@ AS_IF(
         [AS_IF(
             [test "$need_panel_menu" = "yes"],
             [AC_MSG_ERROR([could not find libmenu library (frontend: nconf)])],
-            [has_panel_menu=no])])])
+            [has_panel_menu=no])])
+     ncurses_extra_LIBS="$LIBS"
+     LIBS=$LIBS_old])
 
 AS_IF(
     [test "$has_panel_menu" = "no" ],
