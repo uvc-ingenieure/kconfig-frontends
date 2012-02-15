@@ -58,6 +58,19 @@ AC_ARG_ENABLE(
                [package_name=$enableval])])
 AC_SUBST([package_name], [${package_name=$PACKAGE_NAME}])
 
+AC_ARG_ENABLE(
+    [config-prefix],
+    [AS_HELP_STRING(
+        [--enable-config-prefix=PREFIX],
+        [the prefix to the config option (default=CONFIG_)])],
+    [AS_CASE(
+        ["$enableval"],
+        [*" "*],[AC_MSG_ERROR([config prefix can not contain spaces: '$enableval'])],
+        [yes],  [config_prefix=CONFIG_],
+        [no],   [config_prefix=],
+                [config_prefix=$enableval])])
+AC_SUBST([config_prefix], [${config_prefix-CONFIG_}])
+
 #----------------------------------------
 # Options to selectively enable/disable frontends
 # All are selected by default
@@ -333,6 +346,7 @@ AC_OUTPUT
 
 AC_MSG_NOTICE([Configured with:])
 AC_MSG_NOTICE([- package name: '$package_name'])
+AC_MSG_NOTICE([- config prefix: '$config_prefix'])
 AC_MSG_NOTICE([- frontends:])
 AS_IF([test "$enable_conf" = "yes"],
       [AC_MSG_NOTICE([  - conf:  yes])],
