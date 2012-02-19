@@ -229,13 +229,6 @@ AS_IF(
     [enable_nconf=no])
 
 #----------------------------------------
-# Check if the lxdialog library should be built
-AS_IF(
-    [test "$enable_mconf" = "yes" -o "$enable_mconf" = "auto"],
-    [need_lxdialog=yes],
-    [need_lxdialog=no])
-
-#----------------------------------------
 # Check pkg-config if needed
 AS_CASE(
     ["$enable_gconf":"$enable_qconf"],
@@ -294,6 +287,13 @@ AS_IF([test "$enable_gconf" = "auto"], [enable_gconf=yes])
 AS_IF([test "$enable_mconf" = "auto"], [enable_mconf=yes])
 AS_IF([test "$enable_nconf" = "auto"], [enable_nconf=yes])
 AS_IF([test "$enable_qconf" = "auto"], [enable_qconf=yes])
+
+#----------------------------------------
+# Check if the lxdialog library should be built
+AS_IF(
+    [test "$enable_mconf" = "yes"],
+    [need_lxdialog=yes],
+    [need_lxdialog=no])
 
 #---------------------------------------------------------------------------
 # Prepare automake
