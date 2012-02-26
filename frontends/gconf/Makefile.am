@@ -8,7 +8,7 @@ gconf_CPPFLAGS = $(AM_CPPFLAGS)         \
                  -DGUI_PATH='"$(pkgdatadir)/gconf.glade"'
 gconf_CFLAGS = $(AM_CFLAGS) \
                $(gtk_CFLAGS)
-gconf_LDADD = $(gtk_LIBS)                           \
-              ../../libs/parser/libkconfigparser.la
+gconf_LDADD = ../../libs/parser/libkconfigparser.la \
+              $(gtk_LIBS)
 gconfdir = $(pkgdatadir)
 gconf_DATA = gconf.glade
