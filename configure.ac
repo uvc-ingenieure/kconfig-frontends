@@ -333,6 +333,7 @@ AC_SUBST(
 AC_CONFIG_FILES([
     Makefile
     libs/Makefile
+    libs/images/Makefile
     libs/lxdialog/Makefile
     libs/parser/Makefile
     frontends/Makefile

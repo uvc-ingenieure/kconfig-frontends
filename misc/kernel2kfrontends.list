@@ -25,6 +25,5 @@ scripts/kconfig/lxdialog/yesno.c                  -->  libs/lxdialog/yesno.c
 scripts/kconfig/lxdialog/menubox.c                -->  libs/lxdialog/menubox.c
 scripts/kconfig/lxdialog/dialog.h                 -->  libs/lxdialog/dialog.h
 scripts/kconfig/nconf.h                           -->  frontends/nconf/nconf.h
-scripts/kconfig/images.c                          -->  frontends/qconf/images.c
-scripts/kconfig/images.c                          -->  frontends/gconf/images.c
+scripts/kconfig/images.c                          -->  libs/images/images.h
 scripts/kconfig/lkc.h                             -->  libs/parser/lkc.h
