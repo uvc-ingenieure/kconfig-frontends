@@ -203,7 +203,7 @@ AS_IF(
      LIBS_old="$LIBS"
      AC_SEARCH_LIBS(
         [new_panel],
-        [panel],
+        [panelw panel],
         [ac_ct_panel_lib_found=yes; break])
      AS_IF(
         [test -z "$ac_ct_panel_lib_found"],
@@ -213,7 +213,7 @@ AS_IF(
             [has_panel_menu=no])])
      AC_SEARCH_LIBS(
         [menu_init],
-        [menu],
+        [menuw menu],
         [ac_ct_menu_lib_found=yes; break])
      AS_IF(
         [test -z "$ac_ct_panel_lib_found"],
