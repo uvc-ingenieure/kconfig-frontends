@@ -20,8 +20,6 @@ frontends/*/.libs
 
 aclocal.m4
 configure
-config.h
-config.h.in
 config.log
 config.status
 libtool
@@ -32,4 +30,4 @@ stamp-h1
 
 .deps/
 autom4te.cache/
-scripts/
+scripts/.autostuff
