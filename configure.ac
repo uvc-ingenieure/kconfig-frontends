@@ -31,22 +31,22 @@ LT_INIT([disable-static])
 # Although there is a default (="linux") in the code, we do provide
 # a default here, to get a consistent autostuff behavior
 AC_ARG_ENABLE(
-    [package-name],
+    [root-menu-prompt],
     [AS_HELP_STRING(
-        [--enable-package-name],
-        [set the package name (default=kconfig-frontends)])],
+        [--enable-root-menu-prompt],
+        [set the root-menu prompt (default=Configuration)])],
     [AS_CASE(
         ["$enableval"],
-        [yes], [package_name=$PACKAGE_NAME],
-        [no],  [package_name=],
+        [yes], [root_menu=Configuration],
+        [no],  [root_menu=],
                [# Escape the $ signs, otherwise they would get munged by make
                 # Also, append a space at the end, to separate the package
                 # name from the literal 'Configuration'
-                package_name="$( echo "$enableval"          \
-                                 |sed -r -e 's/\$/\\$$/g;'  \
-                                         -e 's/$/ /;'       \
-                               )"])])
-AC_SUBST([package_name], [${package_name=$PACKAGE_NAME}])
+                root_menu="$( echo "$enableval"          \
+                              |sed -r -e 's/\$/\\$$/g;'  \
+                                      -e 's/$/ /;'       \
+                            )"])])
+AC_SUBST([root_menu], [${root_menu=Configuration}])
 
 AC_ARG_ENABLE(
     [config-prefix],
@@ -347,8 +347,8 @@ AC_OUTPUT
 
 AC_MSG_NOTICE()
 AC_MSG_NOTICE([Configured with:])
-AC_MSG_NOTICE([- package name: '$package_name'])
-AC_MSG_NOTICE([- config prefix: '$config_prefix'])
+AC_MSG_NOTICE([- root-menu prompt: '$root_menu'])
+AC_MSG_NOTICE([- config prefix:    '$config_prefix'])
 AC_MSG_NOTICE([- frontends:])
 AS_IF([test "$enable_conf" = "yes"],
       [AC_MSG_NOTICE([  - conf:  yes])],

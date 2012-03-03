@@ -14,7 +14,7 @@
  	modules_sym->type = S_BOOLEAN;
  	modules_sym->flags |= SYMBOL_AUTO;
 -	rootmenu.prompt = menu_add_prompt(P_MENU, "Linux Kernel Configuration", NULL);
-+	rootmenu.prompt = menu_add_prompt(P_MENU, PACKAGE "Configuration", NULL);
++	rootmenu.prompt = menu_add_prompt(P_MENU, ROOTMENU, NULL);
  
  	if (getenv("ZCONF_DEBUG"))
  		zconfdebug = 1;
