@@ -39,7 +39,13 @@ AC_ARG_ENABLE(
         ["$enableval"],
         [yes], [package_name=$PACKAGE_NAME],
         [no],  [package_name=],
-               [package_name=$enableval])])
+               [# Escape the $ signs, otherwise they would get munged by make
+                # Also, append a space at the end, to separate the package
+                # name from the literal 'Configuration'
+                package_name="$( echo "$enableval"          \
+                                 |sed -r -e 's/\$/\\$$/g;'  \
+                                         -e 's/$/ /;'       \
+                               )"])])
 AC_SUBST([package_name], [${package_name=$PACKAGE_NAME}])
 
 AC_ARG_ENABLE(
