@@ -33,7 +33,7 @@ LT_INIT([disable-static])
 AC_ARG_ENABLE(
     [root-menu-prompt],
     [AS_HELP_STRING(
-        [--enable-root-menu-prompt],
+        [--enable-root-menu-prompt=PROMPT],
         [set the root-menu prompt (default=Configuration)])],
     [AS_CASE(
         ["$enableval"],
