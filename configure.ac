@@ -42,10 +42,7 @@ AC_ARG_ENABLE(
                [# Escape the $ signs, otherwise they would get munged by make
                 # Also, append a space at the end, to separate the package
                 # name from the literal 'Configuration'
-                root_menu="$( echo "$enableval"          \
-                              |sed -r -e 's/\$/\\$$/g;'  \
-                                      -e 's/$/ /;'       \
-                            )"])])
+                root_menu="$( echo "$enableval" |sed -r -e 's/\$/\\$$/g;' )"])])
 AC_SUBST([root_menu], [${root_menu=Configuration}])
 
 AC_ARG_ENABLE(
