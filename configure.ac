@@ -225,7 +225,8 @@ AS_IF(
      AC_SEARCH_LIBS(
         [new_panel],
         [panelw panel],
-        [ac_ct_panel_lib_found=yes; break])
+        [ac_ct_panel_lib_found=yes; break],,
+        [$ncurses_LIBS])
      AS_IF(
         [test -z "$ac_ct_panel_lib_found"],
         [AS_IF(
@@ -235,7 +236,8 @@ AS_IF(
      AC_SEARCH_LIBS(
         [menu_init],
         [menuw menu],
-        [ac_ct_menu_lib_found=yes; break])
+        [ac_ct_menu_lib_found=yes; break],,
+        [$ncurses_LIBS])
      AS_IF(
         [test -z "$ac_ct_panel_lib_found"],
         [AS_IF(
