@@ -2,10 +2,10 @@ bin_PROGRAMS = mconf
 
 mconf_SOURCES = mconf.c
 mconf_CPPFLAGS = $(AM_CPPFLAGS)                 \
-                 -DCURSES_LOC='"${CURSES_LOC}"' \
+                 -DCURSES_LOC='"$(CURSES_LOC)"' \
                  $(GETTEXT)                     \
                  -I../../libs                   \
                  -I../../libs/parser
 mconf_LDADD = ../../libs/parser/libkconfigparser.la \
               ../../libs/lxdialog/liblxdialog.a     \
-              ${ncurses_LIBS}
+              $(ncurses_LIBS)
