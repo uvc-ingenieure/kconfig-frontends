@@ -8,4 +8,4 @@ mconf_CPPFLAGS = $(AM_CPPFLAGS)                 \
                  -I../../libs/parser
 mconf_LDADD = ../../libs/parser/libkconfigparser.la \
               ../../libs/lxdialog/liblxdialog.a     \
-              $(ncurses_LIBS)
+              $(ncurses_LIBS) $(mconf_EXTRA_LIBS)

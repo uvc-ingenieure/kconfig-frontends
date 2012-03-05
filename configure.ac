@@ -287,6 +287,14 @@ AS_IF(
     [test "$has_qt" = "no" ],
     [enable_qconf=no])
 
+#----------------------------------------
+# Per-frontends extra libraries
+AC_ARG_VAR([conf_EXTRA_LIBS],  [Extra libraries to build the conf frontend] )
+AC_ARG_VAR([gconf_EXTRA_LIBS], [Extra libraries to build the gconf frontend])
+AC_ARG_VAR([mconf_EXTRA_LIBS], [Extra libraries to build the mconf frontend])
+AC_ARG_VAR([nconf_EXTRA_LIBS], [Extra libraries to build the nconf frontend])
+AC_ARG_VAR([qconf_EXTRA_LIBS], [Extra libraries to build the qconf frontend])
+
 #---------------------------------------------------------------------------
 # Now, we know what frontends to enable
 AS_IF([test "$enable_conf"  = "auto"], [enable_conf=yes ])
