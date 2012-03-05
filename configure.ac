@@ -190,6 +190,7 @@ AS_IF(
     [AC_SUBST([CURSES_LOC])
      AC_SUBST([ncurses_LIBS])
      LIBS_old="$LIBS"
+     LIBS=
      AC_CHECK_HEADERS(
         [ncurses/ncurses.h ncurses/curses.h ncursesw/curses.h ncurses.h curses.h],
         [CURSES_LOC=$ac_header; break])
@@ -222,6 +223,7 @@ AS_IF(
     [test "$need_panel_menu" = "yes" -o "$need_panel_menu" = "auto"],
     [AC_SUBST([ncurses_extra_LIBS])
      LIBS_old="$LIBS"
+     LIBS=
      AC_SEARCH_LIBS(
         [new_panel],
         [panelw panel],
