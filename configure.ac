@@ -14,7 +14,7 @@ AC_INIT(
 AC_CONFIG_SRCDIR([frontends/conf/conf.c])
 # Use a config.h to avoid brazilions -DHAVE_FOO on compile lines
 AC_CONFIG_HEADERS([scripts/.autostuff/config.h])
-AC_CONFIG_AUX_DIR([scripts/.autostuff/scritps])
+AC_CONFIG_AUX_DIR([scripts/.autostuff/scripts])
 AC_CONFIG_MACRO_DIR([scripts/.autostuff/m4])
 
 #----------------------------------------
