@@ -12,4 +12,4 @@ qconf_LDADD = $(top_builddir)/libs/parser/libkconfigparser.la \
               $(qt4_LIBS) $(qconf_EXTRA_LIBS)
 
 .h.moc:
-	moc -i $< -o $@
+	$(MOC) -i $< -o $@

@@ -285,7 +285,13 @@ AS_IF(
 
 AS_IF(
     [test "$has_qt" = "no" ],
-    [enable_qconf=no])
+    [enable_qconf=no],
+    [QT4_BINDIR=`$PKG_CONFIG Qt --variable bindir`
+     AC_PATH_PROGS(
+        [MOC],
+        [moc-qt4 moc],
+        [moc],
+        [$QT4_BINDIR:$PATH])])
 
 #----------------------------------------
 # Per-frontends extra libraries
