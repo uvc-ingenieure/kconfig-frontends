@@ -272,27 +272,36 @@ AS_IF(
 
 #----------------------------------------
 # Check headers and libs for qconf
-AC_ARG_VAR([MOC], [Qt meta object compiler (moc) command])
 AS_IF(
     [test "$need_qt" = "yes" -o "$need_qt" = "auto"],
     [PKG_CHECK_MODULES(
         [qt4],
         [QtCore QtGui Qt3Support],
-        [has_qt=yes],
+        [has_qt=yes; need_moc="$need_qt"],
         [AS_IF(
             [test "$need_qt" = "yes"],
             [AC_MSG_ERROR([could not find QT4 headers and/or libraries (frontend: qconf)])],
-            [has_qt=no])])])
+            [has_qt=no; need_moc=no])])])
 
+AC_ARG_VAR([MOC], [Qt meta object compiler (moc) command])
 AS_IF(
-    [test "$has_qt" = "no" ],
-    [enable_qconf=no],
+    [test "$need_moc" = "yes" -o "$need_moc" = "auto"],
     [QT4_BINDIR=`$PKG_CONFIG Qt --variable bindir`
      AC_PATH_PROGS(
         [MOC],
-        [moc-qt4 moc],
-        [moc],
-        [$QT4_BINDIR:$PATH])])
+        [moc-qt4 moc],,
+        [$QT4_BINDIR:$PATH])
+     AS_IF(
+        [test -n "$MOC"],
+        [has_moc=yes],
+        [AS_IF(
+            [test "$need_moc" = "yes"],
+            [AC_MSG_ERROR([could not find moc (frontend: qconf)])],
+            [has_moc=no])])])
+
+AS_IF(
+    [test "$has_qt" = "no" -o "$has_moc" = "no"],
+    [enable_qconf=no])
 
 #----------------------------------------
 # Per-frontends extra libraries
