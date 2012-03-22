@@ -272,6 +272,7 @@ AS_IF(
 
 #----------------------------------------
 # Check headers and libs for qconf
+AC_ARG_VAR([MOC], [Qt meta object compiler (moc) command])
 AS_IF(
     [test "$need_qt" = "yes" -o "$need_qt" = "auto"],
     [PKG_CHECK_MODULES(
