@@ -31,3 +31,5 @@ scripts/diffconfig                                -->  misc/diffconfig
 scripts/kconfig/kxgettext.c                       -->  misc/kxgettext.c
 scripts/kconfig/merge_config.sh                   -->  misc/merge_config.sh
 scripts/kconfig/streamline_config.pl              -->  misc/streamline_config.pl
+Documentation/kbuild/kconfig-language.txt         -->  docs/kconfig-language.txt
+Documentation/kbuild/kconfig.txt                  -->  docs/kconfig.txt
