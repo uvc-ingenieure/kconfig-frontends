@@ -10,7 +10,7 @@ AC_PREREQ([2.67])
 AC_INIT(
     [kconfig-frontends],
     [m4_esyscmd_s([./scripts/version.sh])],
-    [nobody@nowhere.org])
+    [yann.morin.1998@free.fr])
 AC_CONFIG_SRCDIR([frontends/conf/conf.c])
 # Use a config.h to avoid brazilions -DHAVE_FOO on compile lines
 AC_CONFIG_HEADERS([scripts/.autostuff/config.h])
