@@ -28,6 +28,19 @@ LT_INIT([disable-static])
 
 #---------------------------------------------------------------------------
 # Set misc options
+
+# By default, do not build with -Werror, unless the user asks for it
+AC_ARG_ENABLE(
+    [werror],
+    [AS_HELP_STRING(
+        [--enable-werror],
+        [build with -Werror (default=no)])],
+    [AS_CASE(
+        ["$enableval"],
+        [yes], [werror_CFLAGS=-Werror],
+        [*],   [werror_CFLAGS=""])])
+AC_SUBST([werror_CFLAGS],[${werror_CFLAGS}])
+
 # Although there is a default (="linux") in the code, we do provide
 # a default here, to get a consistent autostuff behavior
 AC_ARG_ENABLE(
@@ -372,8 +385,11 @@ AC_OUTPUT
 
 AC_MSG_NOTICE()
 AC_MSG_NOTICE([Configured with:])
-AC_MSG_NOTICE([- root-menu prompt: '$root_menu'])
-AC_MSG_NOTICE([- config prefix:    '$config_prefix'])
+AS_IF([test "$enable_werror" = "yes"],
+      [AC_MSG_NOTICE([- treat warnings as errors: yes])],
+      [AC_MSG_NOTICE([- treat warnings as errors: no])])
+AC_MSG_NOTICE([- root-menu prompt:        '$root_menu'])
+AC_MSG_NOTICE([- config prefix:           '$config_prefix'])
 AC_MSG_NOTICE([- frontends:])
 AS_IF([test "$enable_conf" = "yes"],
       [AC_MSG_NOTICE([  - conf:  yes])],
