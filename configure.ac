@@ -407,12 +407,12 @@ AS_IF([test "$enable_wall" = "yes"],
 AS_IF([test "$enable_werror" = "yes"],
       [AC_MSG_NOTICE([- treat warnings as errors: yes])],
       [AC_MSG_NOTICE([- treat warnings as errors: no])])
-AC_MSG_NOTICE([- root-menu prompt:        '$root_menu'])
-AC_MSG_NOTICE([- config prefix:           '$config_prefix'])
+AC_MSG_NOTICE([- root-menu prompt        : '$root_menu'])
+AC_MSG_NOTICE([- config prefix           : '$config_prefix'])
 AC_MSG_NOTICE([- frontends:])
 AS_IF([test "$enable_conf" = "yes"],
-      [AC_MSG_NOTICE([  - conf:  yes])],
-      [AC_MSG_NOTICE([  - conf:  no])])
+      [AC_MSG_NOTICE([  - conf : yes])],
+      [AC_MSG_NOTICE([  - conf : no])])
 AS_IF([test "$enable_gconf" = "yes"],
       [AC_MSG_NOTICE([  - gconf: yes])],
       [AC_MSG_NOTICE([  - gconf: no])])
