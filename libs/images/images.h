@@ -3,6 +3,7 @@
  * Released under the terms of the GNU GPL v2.0.
  */
 
+#ifdef WANTS_xpm_load
 static const char *xpm_load[] = {
 "22 22 5 1",
 ". c None",
@@ -32,7 +33,9 @@ static const char *xpm_load[] = {
 "##cccccccccccc##......",
 "###############.......",
 "......................"};
+#endif
 
+#ifdef WANTS_xpm_save
 static const char *xpm_save[] = {
 "22 22 5 1",
 ". c None",
@@ -62,7 +65,9 @@ static const char *xpm_save[] = {
 ".#aaa#########bbb#aa#.",
 "..##################..",
 "......................"};
+#endif
 
+#ifdef WANTS_xpm_back
 static const char *xpm_back[] = {
 "22 22 3 1",
 ". c None",
@@ -90,7 +95,9 @@ static const char *xpm_back[] = {
 "......................",
 "......................",
 "......................"};
+#endif
 
+#ifdef WANTS_xpm_tree_view
 static const char *xpm_tree_view[] = {
 "22 22 2 1",
 ". c None",
@@ -117,7 +124,9 @@ static const char *xpm_tree_view[] = {
 "......########........",
 "......................",
 "......................"};
+#endif
 
+#ifdef WANTS_xpm_single_view
 static const char *xpm_single_view[] = {
 "22 22 2 1",
 ". c None",
@@ -144,7 +153,9 @@ static const char *xpm_single_view[] = {
 "..........#...........",
 "......................",
 "......................"};
+#endif
 
+#ifdef WANTS_xpm_split_view
 static const char *xpm_split_view[] = {
 "22 22 2 1",
 ". c None",
@@ -171,7 +182,9 @@ static const char *xpm_split_view[] = {
 "......#......#........",
 "......................",
 "......................"};
+#endif
 
+#ifdef WANTS_xpm_symbol_no
 static const char *xpm_symbol_no[] = {
 "12 12 2 1",
 "  c white",
@@ -188,7 +201,9 @@ static const char *xpm_symbol_no[] = {
 " .        . ",
 " .......... ",
 "            "};
+#endif
 
+#ifdef WANTS_xpm_symbol_mod
 static const char *xpm_symbol_mod[] = {
 "12 12 2 1",
 "  c white",
@@ -205,7 +220,9 @@ static const char *xpm_symbol_mod[] = {
 " .        . ",
 " .......... ",
 "            "};
+#endif
 
+#ifdef WANTS_xpm_symbol_yes
 static const char *xpm_symbol_yes[] = {
 "12 12 2 1",
 "  c white",
@@ -222,7 +239,9 @@ static const char *xpm_symbol_yes[] = {
 " .        . ",
 " .......... ",
 "            "};
+#endif
 
+#ifdef WANTS_xpm_choice_no
 static const char *xpm_choice_no[] = {
 "12 12 2 1",
 "  c white",
@@ -239,7 +258,9 @@ static const char *xpm_choice_no[] = {
 "  ..    ..  ",
 "    ....    ",
 "            "};
+#endif
 
+#ifdef WANTS_xpm_choice_yes
 static const char *xpm_choice_yes[] = {
 "12 12 2 1",
 "  c white",
@@ -256,7 +277,9 @@ static const char *xpm_choice_yes[] = {
 "  ..    ..  ",
 "    ....    ",
 "            "};
+#endif
 
+#ifdef WANTS_xpm_menu
 static const char *xpm_menu[] = {
 "12 12 2 1",
 "  c white",
@@ -273,7 +296,9 @@ static const char *xpm_menu[] = {
 " .        . ",
 " .......... ",
 "            "};
+#endif
 
+#ifdef WANTS_xpm_menu_inv
 static const char *xpm_menu_inv[] = {
 "12 12 2 1",
 "  c white",
@@ -290,7 +315,9 @@ static const char *xpm_menu_inv[] = {
 " .......... ",
 " .......... ",
 "            "};
+#endif
 
+#ifdef WANTS_xpm_menuback
 static const char *xpm_menuback[] = {
 "12 12 2 1",
 "  c white",
@@ -307,7 +334,9 @@ static const char *xpm_menuback[] = {
 " .        . ",
 " .......... ",
 "            "};
+#endif
 
+#ifdef WANTS_xpm_void
 static const char *xpm_void[] = {
 "12 12 2 1",
 "  c white",
@@ -324,3 +353,4 @@ static const char *xpm_void[] = {
 "            ",
 "            ",
 "            "};
+#endif

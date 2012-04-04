@@ -1,35 +1,33 @@
 diff --git a/frontends/gconf/gconf.c b/frontends/gconf/gconf.c
 --- a/frontends/gconf/gconf.c
 +++ b/frontends/gconf/gconf.c
-@@ -11,7 +11,7 @@
+@@ -11,7 +11,12 @@
  #endif
  
  #include "lkc.h"
 -#include "images.c"
++#define WANTS_xpm_single_view
++#define WANTS_xpm_split_view
++#define WANTS_xpm_tree_view
++#define WANTS_xpm_menu
++#define WANTS_xpm_void
 +#include "images.h"
  
  #include <glade/glade.h>
  #include <gtk/gtk.h>
-@@ -1468,7 +1468,9 @@
+@@ -1468,8 +1473,10 @@
  int main(int ac, char *av[])
  {
  	const char *name;
 +#if 0
  	char *env;
 +#endif
- 	gchar *glade_file = GUI_PATH;
- 
- 	bindtextdomain(PACKAGE, LOCALEDIR);
-@@ -1469,7 +1471,7 @@
- {
- 	const char *name;
- 	char *env;
 -	gchar *glade_file;
 +	gchar *glade_file = GUI_PATH;
  
  	bindtextdomain(PACKAGE, LOCALEDIR);
  	bind_textdomain_codeset(PACKAGE, "UTF-8");
-@@ -1483,6 +1483,7 @@
+@@ -1483,6 +1490,7 @@
  	//add_pixmap_directory (PACKAGE_DATA_DIR "/" PACKAGE "/pixmaps");
  	//add_pixmap_directory (PACKAGE_SOURCE_DIR "/pixmaps");
  
@@ -37,7 +35,7 @@ diff --git a/frontends/gconf/gconf.c b/frontends/gconf/gconf.c
  	/* Determine GUI path */
  	env = getenv(SRCTREE);
  	if (env)
-@@ -1491,6 +1492,7 @@
+@@ -1491,6 +1499,7 @@
  		glade_file = g_strconcat(av[0], ".glade", NULL);
  	else
  		glade_file = g_strconcat(g_get_current_dir(), "/", av[0], ".glade", NULL);
