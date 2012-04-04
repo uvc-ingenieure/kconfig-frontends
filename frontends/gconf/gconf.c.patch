@@ -10,7 +10,17 @@ diff --git a/frontends/gconf/gconf.c b/frontends/gconf/gconf.c
  
  #include <glade/glade.h>
  #include <gtk/gtk.h>
-@@ -1469,7 +1469,7 @@
+@@ -1468,7 +1468,9 @@
+ int main(int ac, char *av[])
+ {
+ 	const char *name;
++#if 0
+ 	char *env;
++#endif
+ 	gchar *glade_file = GUI_PATH;
+ 
+ 	bindtextdomain(PACKAGE, LOCALEDIR);
+@@ -1469,7 +1471,7 @@
  {
  	const char *name;
  	char *env;
