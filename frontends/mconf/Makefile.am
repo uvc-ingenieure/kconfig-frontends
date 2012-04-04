@@ -6,8 +6,8 @@ mconf_CPPFLAGS = $(AM_CPPFLAGS)                 \
                  $(GETTEXT)                     \
                  -I$(top_srcdir)/libs                   \
                  -I$(top_srcdir)/libs/parser
-mconf_CFLAGS = $(AM_CFLAGS)     \
-               $(werror_CFLAGS)
+mconf_CFLAGS = $(AM_CFLAGS) \
+               $(kf_CFLAGS)
 mconf_LDADD = $(top_builddir)/libs/parser/libkconfigparser.la \
               $(top_builddir)/libs/lxdialog/liblxdialog.a     \
               $(ncurses_LIBS) $(mconf_EXTRA_LIBS)

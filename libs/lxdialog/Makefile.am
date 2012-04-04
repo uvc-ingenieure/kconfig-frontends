@@ -12,4 +12,4 @@ liblxdialog_a_SOURCES = \
 liblxdialog_a_CPPFLAGS = $(AM_CPPFLAGS)                   \
                          -DCURSES_LOC='"${CURSES_LOC}"'   \
                          $(GETTEXT)
-liblxdialog_a_CFLAGS = $(AM_CFLAGS) $(werror_CFLAGS)
+liblxdialog_a_CFLAGS = $(AM_CFLAGS) $(kf_CFLAGS)

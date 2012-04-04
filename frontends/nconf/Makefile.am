@@ -5,7 +5,7 @@ nconf_CPPFLAGS = $(AM_CPPFLAGS)     \
                  $(GETTEXT)         \
                  -I$(top_srcdir)/libs/parser
 nconf_CFLAGS = $(AM_CFLAGS)     \
-               $(werror_CFLAGS)
+               $(kf_CFLAGS)
 nconf_LDADD = $(top_builddir)/libs/parser/libkconfigparser.la \
               $(ncurses_extra_LIBS) $(ncurses_LIBS) \
               $(nconf_EXTRA_LIBS)

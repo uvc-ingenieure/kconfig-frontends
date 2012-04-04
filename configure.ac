@@ -29,6 +29,18 @@ LT_INIT([disable-static])
 #---------------------------------------------------------------------------
 # Set misc options
 
+# By default, do not build with -Wall, unless the user asks for it
+AC_ARG_ENABLE(
+    [wall],
+    [AS_HELP_STRING(
+        [--enable-wall],
+        [build with -Wall (default=no)])],
+    [AS_CASE(
+        ["$enableval"],
+        [yes], [wall_CFLAGS=-Wall],
+        [*],   [wall_CFLAGS=""])])
+AC_SUBST([wall_CFLAGS],[${wall_CFLAGS}])
+
 # By default, do not build with -Werror, unless the user asks for it
 AC_ARG_ENABLE(
     [werror],
@@ -123,6 +135,10 @@ AC_ARG_ENABLE(
                         [eval enable_$f=no])
      done])
 AC_SUBST([enable_frontends])
+
+#----------------------------------------
+# What extra CFLAGS we will be using
+AC_SUBST([kf_CFLAGS], ["$wall_CFLAGS $werror_CFLAGS"])
 
 #----------------------------------------
 # Dependencies that will be needed, depending on the frontends
@@ -385,6 +401,9 @@ AC_OUTPUT
 
 AC_MSG_NOTICE()
 AC_MSG_NOTICE([Configured with:])
+AS_IF([test "$enable_wall" = "yes"],
+      [AC_MSG_NOTICE([- catch all warnings      : yes])],
+      [AC_MSG_NOTICE([- catch all warnings      : no])])
 AS_IF([test "$enable_werror" = "yes"],
       [AC_MSG_NOTICE([- treat warnings as errors: yes])],
       [AC_MSG_NOTICE([- treat warnings as errors: no])])

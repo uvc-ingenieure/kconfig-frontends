@@ -6,8 +6,8 @@ qconf_CPPFLAGS = $(AM_CPPFLAGS)         \
                  $(GETTEXT)             \
                  -I$(top_srcdir)/libs/parser    \
                  -I$(top_srcdir)/libs/images
-qconf_CXXFLAGS = $(AM_CXXFLAGS)     \
-                 $(werror_CFLAGS)   \
+qconf_CXXFLAGS = $(AM_CXXFLAGS) \
+                 $(kf_CFLAGS)   \
                  $(qt4_CFLAGS)
 qconf_LDADD = $(top_builddir)/libs/parser/libkconfigparser.la \
               $(qt4_LIBS) $(qconf_EXTRA_LIBS)

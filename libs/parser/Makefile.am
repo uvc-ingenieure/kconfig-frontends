@@ -8,7 +8,7 @@ dist_EXTRA_libkconfigparser_la_SOURCES =  \
     expr.c expr.h lkc.h lkc_proto.h
 libkconfigparser_la_CPPFLAGS = -DROOTMENU="\"$(root_menu)\""    \
                                -DCONFIG_=\"$(config_prefix)\"
-libkconfigparser_la_CFLAGS = $(AM_CFLAGS) $(werror_CFLAGS)
+libkconfigparser_la_CFLAGS = $(AM_CFLAGS) $(kf_CFLAGS)
 libkconfigparser_la_LDFLAGS = -release $(KCONFIGPARSER_LIB_VERSION)
 
 kconfig_includedir = $(includedir)/kconfig
