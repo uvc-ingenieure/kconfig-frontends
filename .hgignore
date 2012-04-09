@@ -14,6 +14,8 @@ frontends/nconf/nconf
 frontends/qconf/qconf
 frontends/qconf/qconf.moc
 
+libs/images/images.c
+libs/images/images.h
 libs/parser/?conf.c
 libs/*/.libs
 frontends/*/.libs

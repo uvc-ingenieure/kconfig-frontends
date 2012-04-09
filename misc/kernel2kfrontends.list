@@ -7,7 +7,7 @@ scripts/kconfig/nconf.gui.c                       -->  frontends/nconf/nconf.gui
 scripts/kconfig/nconf.h                           -->  frontends/nconf/nconf.h
 scripts/kconfig/qconf.cc                          -->  frontends/qconf/qconf.cc
 scripts/kconfig/qconf.h                           -->  frontends/qconf/qconf.h
-scripts/kconfig/images.c                          -->  libs/images/images.h
+scripts/kconfig/images.c                          -->  libs/images/images.c_orig
 scripts/kconfig/lxdialog/BIG.FAT.WARNING          -->  libs/lxdialog/BIG.FAT.WARNING
 scripts/kconfig/lxdialog/checklist.c              -->  libs/lxdialog/checklist.c
 scripts/kconfig/lxdialog/dialog.h                 -->  libs/lxdialog/dialog.h

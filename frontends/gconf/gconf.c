@@ -11,11 +11,6 @@
 #endif
 
 #include "lkc.h"
-#define WANTS_xpm_single_view
-#define WANTS_xpm_split_view
-#define WANTS_xpm_tree_view
-#define WANTS_xpm_menu
-#define WANTS_xpm_void
 #include "images.h"
 
 #include <glade/glade.h>

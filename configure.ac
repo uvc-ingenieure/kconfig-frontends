@@ -356,6 +356,13 @@ AS_IF(
     [need_lxdialog=no])
 
 #----------------------------------------
+# Check if the images library should be built
+AS_IF(
+    [test "$enable_gconf" = "yes" -o "$enable_qconf" = "yes"],
+    [need_images=yes],
+    [need_images=no])
+
+#----------------------------------------
 # Setup automake conditional build
 AM_CONDITIONAL(
     [COND_conf],
@@ -375,6 +382,9 @@ AM_CONDITIONAL(
 AM_CONDITIONAL(
     [COND_lxdialog],
     [test "$need_lxdialog" = "yes"])
+AM_CONDITIONAL(
+    [COND_images],
+    [test "$need_images" = "yes"])
 
 #----------------------------------------
 # Get the version to apply to the parser shared library

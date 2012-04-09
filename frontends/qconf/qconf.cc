@@ -46,21 +46,6 @@
 #include "qconf.h"
 
 #include "qconf.moc"
-#define WANTS_xpm_symbol_yes
-#define WANTS_xpm_symbol_mod
-#define WANTS_xpm_symbol_no
-#define WANTS_xpm_choice_yes
-#define WANTS_xpm_choice_no
-#define WANTS_xpm_menu
-#define WANTS_xpm_menu_inv
-#define WANTS_xpm_menuback
-#define WANTS_xpm_void
-#define WANTS_xpm_back
-#define WANTS_xpm_load
-#define WANTS_xpm_save
-#define WANTS_xpm_single_view
-#define WANTS_xpm_split_view
-#define WANTS_xpm_tree_view
 #include "images.h"
 
 #ifdef _
