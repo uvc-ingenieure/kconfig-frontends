@@ -1,15 +1,15 @@
-noinst_LIBRARIES = liblxdialog.a
+noinst_LIBRARIES = libkconfig-lxdialog.a
 
-liblxdialog_a_SOURCES = \
-    checklist.c         \
-    dialog.h            \
-    inputbox.c          \
-    menubox.c           \
-    textbox.c           \
-    util.c              \
+libkconfig_lxdialog_a_SOURCES = \
+    checklist.c                 \
+    dialog.h                    \
+    inputbox.c                  \
+    menubox.c                   \
+    textbox.c                   \
+    util.c                      \
     yesno.c
 
-liblxdialog_a_CPPFLAGS = $(AM_CPPFLAGS)                   \
-                         -DCURSES_LOC='"${CURSES_LOC}"'   \
-                         $(GETTEXT)
+libkconfig_lxdialog_a_CPPFLAGS = $(AM_CPPFLAGS)                   \
+                                 -DCURSES_LOC='"${CURSES_LOC}"'   \
+                                 $(GETTEXT)
 liblxdialog_a_CFLAGS = $(AM_CFLAGS) $(kf_CFLAGS)

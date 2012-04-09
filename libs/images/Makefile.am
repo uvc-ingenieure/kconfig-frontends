@@ -1,7 +1,7 @@
-noinst_LIBRARIES = libimages.a
+noinst_LIBRARIES = libkconfig-images.a
 
-libimages_a_SOURCES = images.c_orig
-nodist_libimages_a_SOURCES = images.c
+libkconfig_images_a_SOURCES = images.c_orig
+nodist_libkconfig_images_a_SOURCES = images.c
 BUILT_SOURCES = images.c images.h
 CLEANFILES = images.c images.h
 

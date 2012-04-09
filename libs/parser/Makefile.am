@@ -1,15 +1,15 @@
 SUFFIXES = .gperf
 
-lib_LTLIBRARIES = libkconfigparser.la
-libkconfigparser_la_SOURCES = yconf.y
-dist_EXTRA_libkconfigparser_la_SOURCES =  \
+lib_LTLIBRARIES = libkconfig-parser.la
+libkconfig_parser_la_SOURCES = yconf.y
+dist_EXTRA_libkconfig_parser_la_SOURCES = \
     hconf.gperf lconf.l                   \
     confdata.c menu.c symbol.c util.c     \
     expr.c expr.h lkc.h lkc_proto.h
-libkconfigparser_la_CPPFLAGS = -DROOTMENU="\"$(root_menu)\""    \
-                               -DCONFIG_=\"$(config_prefix)\"
-libkconfigparser_la_CFLAGS = $(AM_CFLAGS) $(kf_CFLAGS)
-libkconfigparser_la_LDFLAGS = -release $(KCONFIGPARSER_LIB_VERSION)
+libkconfig_parser_la_CPPFLAGS = -DROOTMENU="\"$(root_menu)\""   \
+                                -DCONFIG_=\"$(config_prefix)\"
+libkconfig_parser_la_CFLAGS = $(AM_CFLAGS) $(kf_CFLAGS)
+libkconfig_parser_la_LDFLAGS = -release $(KCONFIGPARSER_LIB_VERSION)
 
 kconfig_includedir = $(includedir)/kconfig
 kconfig_include_HEADERS = lkc.h expr.h lkc_proto.h
@@ -17,7 +17,7 @@ kconfig_include_HEADERS = lkc.h expr.h lkc_proto.h
 BUILT_SOURCES = hconf.c lconf.c
 CLEANFILES = hconf.c lconf.c yconf.c
 
-# Can't use libkconfigparser_a_CPPFLAGS, as it breaks dependencies
+# Can't use libkconfig_parser_a_CPPFLAGS, as it breaks dependencies
 yconf.o: CPPFLAGS+=$(GETTEXT)
 
 .gperf.c:
