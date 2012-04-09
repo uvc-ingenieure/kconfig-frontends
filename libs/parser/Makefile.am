@@ -15,6 +15,7 @@ kconfig_includedir = $(includedir)/kconfig
 kconfig_include_HEADERS = lkc.h expr.h lkc_proto.h
 
 BUILT_SOURCES = hconf.c lconf.c
+CLEANFILES = hconf.c lconf.c yconf.c
 
 # Can't use libkconfigparser_a_CPPFLAGS, as it breaks dependencies
 yconf.o: CPPFLAGS+=$(GETTEXT)
@@ -23,7 +24,7 @@ yconf.o: CPPFLAGS+=$(GETTEXT)
 	$(GPERF) -t --output-file $@ -a -C -E -g -k 1,3,$$ -p -t $<
 
 # The following rule produces a warning:
-#   parser/Makefile.am:31: user target `.l.c' defined here...
+#   libs/parser/Makefile.am:41: user target `.l.c' defined here...
 #  	/usr/share/automake-1.11/am/lex.am: ... overrides Automake target
 #  	`.l.c' defined here
 #
