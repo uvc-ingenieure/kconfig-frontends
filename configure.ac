@@ -421,37 +421,28 @@ AC_CONFIG_FILES([
 ])
 AC_OUTPUT
 
+#----------------------------------------
+# Pretty-print the configuration settings
+[fe_list=]
+AS_IF([test "$enable_conf"  = "yes"], [fe_list="$fe_list conf" ])
+AS_IF([test "$enable_gconf" = "yes"], [fe_list="$fe_list gconf"])
+AS_IF([test "$enable_mconf" = "yes"], [fe_list="$fe_list mconf"])
+AS_IF([test "$enable_nconf" = "yes"], [fe_list="$fe_list nconf"])
+AS_IF([test "$enable_qconf" = "yes"], [fe_list="$fe_list qconf"])
+
+[lib_list=]
+AS_IF(
+    [test "$enable_shared" = "yes"],
+    [lib_list="$lib_list shared (version: $KCONFIGPARSER_LIB_VERSION)"])
+AS_IF(
+    [test "$enable_static" = "yes"],
+    [lib_list="$lib_list${lib_list:+,} static"])
+
 AC_MSG_NOTICE()
 AC_MSG_NOTICE([Configured with:])
-AS_IF([test "$enable_utils" = "yes"],
-      [AC_MSG_NOTICE([- install utilities       : yes])],
-      [AC_MSG_NOTICE([- install utilities       : no])])
-AS_IF([test "$enable_wall" = "yes"],
-      [AC_MSG_NOTICE([- catch all warnings      : yes])],
-      [AC_MSG_NOTICE([- catch all warnings      : no])])
-AS_IF([test "$enable_werror" = "yes"],
-      [AC_MSG_NOTICE([- treat warnings as errors: yes])],
-      [AC_MSG_NOTICE([- treat warnings as errors: no])])
-AC_MSG_NOTICE([- root-menu prompt        : '$root_menu'])
-AC_MSG_NOTICE([- config prefix           : '$config_prefix'])
-AC_MSG_NOTICE([- frontends:])
-AS_IF([test "$enable_conf" = "yes"],
-      [AC_MSG_NOTICE([  - conf : yes])],
-      [AC_MSG_NOTICE([  - conf : no])])
-AS_IF([test "$enable_gconf" = "yes"],
-      [AC_MSG_NOTICE([  - gconf: yes])],
-      [AC_MSG_NOTICE([  - gconf: no])])
-AS_IF([test "$enable_mconf" = "yes"],
-      [AC_MSG_NOTICE([  - mconf: yes])],
-      [AC_MSG_NOTICE([  - mconf: no])])
-AS_IF([test "$enable_nconf" = "yes"],
-      [AC_MSG_NOTICE([  - nconf: yes])],
-      [AC_MSG_NOTICE([  - nconf: no])])
-AS_IF([test "$enable_qconf" = "yes"],
-      [AC_MSG_NOTICE([  - qconf: yes])],
-      [AC_MSG_NOTICE([  - qconf: no])])
-AC_MSG_NOTICE([- parser library:])
-AS_IF([test "$enable_shared" = "yes"],
-      [AC_MSG_NOTICE([  - shared: yes, versioned $KCONFIGPARSER_LIB_VERSION])],
-      [AC_MSG_NOTICE([  - shared: no])])
-AC_MSG_NOTICE([  - static: $enable_static])
+AC_MSG_NOTICE([- parser library     :$lib_list])
+AC_MSG_NOTICE([  - root-menu prompt : $root_menu])
+AC_MSG_NOTICE([  - config prefix    : $config_prefix])
+AC_MSG_NOTICE([- frontends          :$fe_list])
+AC_MSG_NOTICE([- install utilities  : $enable_utils])
+AC_MSG_NOTICE([- CFLAGS CXXFLAGS    : $wall_CFLAGS $werror_CFLAGS])
