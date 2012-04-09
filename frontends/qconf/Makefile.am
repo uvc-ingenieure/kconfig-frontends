@@ -12,6 +12,7 @@ qconf_CXXFLAGS = $(AM_CXXFLAGS) \
 qconf_LDADD = $(top_builddir)/libs/parser/libkconfigparser.la \
               $(top_builddir)/libs/images/libimages.a         \
               $(qt4_LIBS) $(qconf_EXTRA_LIBS)
+CLEANFILES = qconf.moc
 
 .h.moc:
 	$(MOC) -i $< -o $@
