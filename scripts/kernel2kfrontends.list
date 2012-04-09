@@ -27,10 +27,10 @@ scripts/kconfig/menu.c                            -->  libs/parser/menu.c
 scripts/kconfig/symbol.c                          -->  libs/parser/symbol.c
 scripts/kconfig/util.c                            -->  libs/parser/util.c
 scripts/kconfig/zconf.y                           -->  libs/parser/yconf.y
-scripts/config                                    -->  misc/config
-scripts/diffconfig                                -->  misc/diffconfig
-scripts/kconfig/kxgettext.c                       -->  misc/kxgettext.c
-scripts/kconfig/merge_config.sh                   -->  misc/merge_config.sh
-scripts/kconfig/streamline_config.pl              -->  misc/streamline_config.pl
+scripts/config                                    -->  utils/kconfig-tweak
+scripts/diffconfig                                -->  utils/kconfig-diff
+scripts/kconfig/merge_config.sh                   -->  utils/kconfig-merge
+scripts/kconfig/streamline_config.pl              -->  utils/kconfig-streamline
+scripts/kconfig/kxgettext.c                       -->  utils/kconfig-gettext.c
 Documentation/kbuild/kconfig-language.txt         -->  docs/kconfig-language.txt
 Documentation/kbuild/kconfig.txt                  -->  docs/kconfig.txt

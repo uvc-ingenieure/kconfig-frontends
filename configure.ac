@@ -83,6 +83,13 @@ AC_ARG_ENABLE(
                 [config_prefix=$enableval])])
 AC_SUBST([config_prefix], [${config_prefix-CONFIG_}])
 
+AC_ARG_ENABLE(
+    [utils],
+    [AS_HELP_STRING(
+        [--enable-utils],
+        [install utilities to manage .config files (default=no)])])
+AC_SUBST([enable_utils], [${enable_utils:-no}])
+
 #----------------------------------------
 # Options to selectively enable/disable frontends
 # All are selected by default
@@ -385,6 +392,9 @@ AM_CONDITIONAL(
 AM_CONDITIONAL(
     [COND_images],
     [test "$need_images" = "yes"])
+AM_CONDITIONAL(
+    [COND_utils],
+    [test "$enable_utils" = "yes"])
 
 #----------------------------------------
 # Get the version to apply to the parser shared library
@@ -407,11 +417,15 @@ AC_CONFIG_FILES([
     frontends/nconf/Makefile
     frontends/gconf/Makefile
     frontends/qconf/Makefile
+    utils/Makefile
 ])
 AC_OUTPUT
 
 AC_MSG_NOTICE()
 AC_MSG_NOTICE([Configured with:])
+AS_IF([test "$enable_utils" = "yes"],
+      [AC_MSG_NOTICE([- install utilities       : yes])],
+      [AC_MSG_NOTICE([- install utilities       : no])])
 AS_IF([test "$enable_wall" = "yes"],
       [AC_MSG_NOTICE([- catch all warnings      : yes])],
       [AC_MSG_NOTICE([- catch all warnings      : no])])

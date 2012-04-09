@@ -37,7 +37,7 @@ printf "%d.%d.%d%s %s %s\n%s\n"             \
        "${kf_version}"                      \
        >.version
 
-exec <misc/kernel2kfrontends.list
+exec <scripts/kernel2kfrontends.list
 while read k_file trash kf_file; do
     mkdir -p "${kf_file%/*}"
     cp -v "${k_dir}/${k_file}" "${kf_file}"
