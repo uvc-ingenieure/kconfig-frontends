@@ -7,11 +7,16 @@ syntax: glob
 *.la
 *.lai
 
-frontends/conf/kconfig-conf
-frontends/gconf/kconfig-gconf
-frontends/mconf/kconfig-mconf
-frontends/nconf/kconfig-nconf
-frontends/qconf/kconfig-qconf
+frontends/conf/conf
+frontends/conf/*-conf
+frontends/gconf/gconf
+frontends/gconf/*-gconf
+frontends/mconf/mconf
+frontends/mconf/*-mconf
+frontends/nconf/nconf
+frontends/nconf/*-nconf
+frontends/qconf/qconf
+frontends/qconf/*-qconf
 frontends/qconf/qconf.moc
 frontends/*/.libs
 
@@ -20,7 +25,8 @@ libs/images/images.h
 libs/parser/?conf.c
 libs/*/.libs
 
-utils/kconfig-gettext
+utils/gettext
+utils/*-gettext
 utils/.libs
 
 aclocal.m4

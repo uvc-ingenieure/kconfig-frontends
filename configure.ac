@@ -19,6 +19,15 @@ AC_CONFIG_MACRO_DIR([scripts/.autostuff/m4])
 
 #----------------------------------------
 # Prepare automake
+
+# We want to allow the user to override our default program-prefix,
+# so we must set-it now, before automake has a chance to interpret
+# it, but after the options are parsed, so as not to overwrite the
+# value (if any) set by the user
+AS_IF(
+    [test "$program_prefix" = NONE],
+    [program_prefix=kconfig-])
+
 AM_INIT_AUTOMAKE
 
 #----------------------------------------
@@ -445,5 +454,6 @@ AC_MSG_NOTICE([- parser library     :$lib_list])
 AC_MSG_NOTICE([  - root-menu prompt : $root_menu])
 AC_MSG_NOTICE([  - config prefix    : $config_prefix])
 AC_MSG_NOTICE([- frontends          :$fe_list])
+AC_MSG_NOTICE([  - transform name   : $program_transform_name])
 AC_MSG_NOTICE([- install utilities  : $enable_utils])
 AC_MSG_NOTICE([- CFLAGS CXXFLAGS    : $wall_CFLAGS $werror_CFLAGS])

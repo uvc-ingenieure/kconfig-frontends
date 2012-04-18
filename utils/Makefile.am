@@ -1,9 +1,9 @@
-dist_bin_SCRIPTS =  kconfig-tweak kconfig-diff kconfig-merge
-dist_bin_SCRIPTS += kconfig-streamline
-bin_PROGRAMS = kconfig-gettext
+dist_bin_SCRIPTS =  tweak diff merge
+dist_bin_SCRIPTS += streamline
+bin_PROGRAMS = gettext
 
-kconfig_gettext_SOURCES = kconfig-gettext.c
-kconfig_gettext_CPPFLAGS = $(AM_CPPFLAGS)   \
-                           -I$(top_srcdir)/libs/parser
-kconfig_gettext_CFLAGS = $(AM_CFLAGS) $(kf_CFLAGS)
-kconfig_gettext_LDADD = $(top_builddir)/libs/parser/libkconfig-parser.la
+gettext_SOURCES = gettext.c
+gettext_CPPFLAGS = $(AM_CPPFLAGS)   \
+                   -I$(top_srcdir)/libs/parser
+gettext_CFLAGS = $(AM_CFLAGS) $(kf_CFLAGS)
+gettext_LDADD = $(top_builddir)/libs/parser/libkconfig-parser.la
