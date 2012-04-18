@@ -95,9 +95,9 @@ AC_SUBST([config_prefix], [${config_prefix-CONFIG_}])
 AC_ARG_ENABLE(
     [utils],
     [AS_HELP_STRING(
-        [--enable-utils],
+        [--disable-utils],
         [install utilities to manage .config files (default=no)])])
-AC_SUBST([enable_utils], [${enable_utils:-no}])
+AC_SUBST([enable_utils], [${enable_utils:-yes}])
 
 #----------------------------------------
 # Options to selectively enable/disable frontends
