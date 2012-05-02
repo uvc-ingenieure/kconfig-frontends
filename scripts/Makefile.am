@@ -1,1 +1,1 @@
-EXTRA_DIST = ksync.sh kernel2kfrontends.list
+EXTRA_DIST = ksync.sh kernel2kfrontends.list version.sh
