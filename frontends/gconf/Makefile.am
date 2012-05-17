@@ -11,7 +11,7 @@ gconf_CFLAGS = $(AM_CFLAGS) \
                $(gtk_CFLAGS)
 gconf_LDADD = $(top_builddir)/libs/parser/libkconfig-parser.la  \
               $(top_builddir)/libs/images/libkconfig-images.a   \
-              $(gtk_LIBS) $(gconf_EXTRA_LIBS)
+              $(intl_LIBS) $(gtk_LIBS) $(gconf_EXTRA_LIBS)
 gconfdir = $(pkgdatadir)
 gconf_DATA = gconf.glade
 EXTRA_DIST = gconf.c.patch
