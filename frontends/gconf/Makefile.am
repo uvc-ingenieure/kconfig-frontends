@@ -14,3 +14,4 @@ gconf_LDADD = $(top_builddir)/libs/parser/libkconfig-parser.la  \
               $(gtk_LIBS) $(gconf_EXTRA_LIBS)
 gconfdir = $(pkgdatadir)
 gconf_DATA = gconf.glade
+EXTRA_DIST = gconf.c.patch
