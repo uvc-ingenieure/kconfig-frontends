@@ -418,6 +418,9 @@ AM_CONDITIONAL(
 AM_CONDITIONAL(
     [COND_utils],
     [test "$enable_utils" = "yes"])
+AM_CONDITIONAL(
+    [COND_utils_gettext],
+    [test "$has_gettext" = "yes"])
 
 #----------------------------------------
 # Get the version to apply to the parser shared library

@@ -1,6 +1,10 @@
 dist_bin_SCRIPTS =  tweak diff merge
 dist_bin_SCRIPTS += streamline
-bin_PROGRAMS = gettext
+
+if COND_utils_gettext
+    MAYBE_utils_gettext = gettext
+endif
+bin_PROGRAMS = $(MAYBE_utils_gettext)
 
 gettext_SOURCES = gettext.c
 gettext_CPPFLAGS = $(AM_CPPFLAGS)   \
