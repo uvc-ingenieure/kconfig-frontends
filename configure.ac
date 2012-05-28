@@ -215,29 +215,32 @@ AC_CHECK_FUNCS([ gettimeofday mkdir regcomp setlocale uname ])
 
 #----------------------------------------
 # Check for gettext, for the kconfig frontends
-AC_SUBST([intl_CPPFLAGS])
-AC_SUBST([intl_LIBS])
+[has_gettext=yes]
 AC_CHECK_HEADERS(
     [libintl.h],
     [ac_ct_gettext_hdr=$ac_header; break],
-    [AC_MSG_WARN([libintl is missing, frontends will not be localised])
-     intl_CPPFLAGS=-DKBUILD_NO_NLS])
+    [has_gettext=no])
 AS_IF(
-    [test -n "$ac_ct_gettext_hdr"],
+    [test "$has_gettext" = "yes"],
     [AC_CHECK_DECL(
         [gettext],,
-        [AC_MSG_WARN([gettext is missing, frontends will not be localised])
-         intl_CPPFLAGS=-DKBUILD_NO_NLS],
-        [#include <$ac_ct_gettext_hdr>])
-     LIBS_old="$LIBS"
+        [has_gettext=no],
+        [#include <$ac_ct_gettext_hdr>])])
+AS_IF(
+    [test "$has_gettext" = "yes"],
+    [LIBS_old="$LIBS"
      LIBS=
      AC_SEARCH_LIBS(
         [gettext],
         [intl],,
-        [AC_MSG_WARN([gettext is missing, frontends will not be localised])
-         intl_CPPFLAGS=-DKBUILD_NO_NLS])
+        [has_gettext=no])
     intl_LIBS="$LIBS"
     LIBS="$LIBS_old"])
+AS_IF(
+    [test "$has_gettext" = "no"],
+    [intl_CPPFLAGS=-DKBUILD_NO_NLS])
+AC_SUBST([intl_CPPFLAGS])
+AC_SUBST([intl_LIBS])
 
 #----------------------------------------
 # Check for ncurses, for the mconf & nconf frontends
@@ -466,5 +469,6 @@ AC_MSG_NOTICE([  - root-menu prompt : $root_menu])
 AC_MSG_NOTICE([  - config prefix    : $config_prefix])
 AC_MSG_NOTICE([- frontends          :$fe_list])
 AC_MSG_NOTICE([  - transform name   : $program_transform_name])
+AC_MSG_NOTICE([  - localised        : $has_gettext])
 AC_MSG_NOTICE([- install utilities  : $enable_utils])
 AC_MSG_NOTICE([- CFLAGS CXXFLAGS    : $wall_CFLAGS $werror_CFLAGS])
