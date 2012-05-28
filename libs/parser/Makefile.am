@@ -19,7 +19,7 @@ CLEANFILES = hconf.c lconf.c yconf.c
 EXTRA_DIST = yconf.y.patch
 
 # Can't use libkconfig_parser_a_CPPFLAGS, as it breaks dependencies
-yconf.o: CPPFLAGS+=$(GETTEXT)
+yconf.o: CPPFLAGS+=$(intl_CPPFLAGS)
 
 .gperf.c:
 	$(GPERF) -t --output-file $@ -a -C -E -g -k 1,3,$$ -p -t $<

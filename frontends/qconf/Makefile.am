@@ -3,7 +3,7 @@ bin_PROGRAMS = qconf
 qconf_SOURCES = qconf.cc qconf.h
 BUILT_SOURCES = qconf.moc
 qconf_CPPFLAGS = $(AM_CPPFLAGS)                 \
-                 $(GETTEXT)                     \
+                 $(intl_CPPFLAGS)               \
                  -I$(top_srcdir)/libs/parser    \
                  -I$(top_builddir)/libs/images
 qconf_CXXFLAGS = $(AM_CXXFLAGS) \

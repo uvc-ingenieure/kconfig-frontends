@@ -1,8 +1,8 @@
 bin_PROGRAMS = nconf
 
 nconf_SOURCES = nconf.c nconf.gui.c nconf.h
-nconf_CPPFLAGS = $(AM_CPPFLAGS) \
-                 $(GETTEXT)     \
+nconf_CPPFLAGS = $(AM_CPPFLAGS)     \
+                 $(intl_CPPFLAGS)   \
                  -I$(top_srcdir)/libs/parser
 nconf_CFLAGS = $(AM_CFLAGS) \
                $(kf_CFLAGS)

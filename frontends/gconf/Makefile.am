@@ -2,7 +2,7 @@ bin_PROGRAMS = gconf
 
 gconf_SOURCES = gconf.c gconf.glade
 gconf_CPPFLAGS = $(AM_CPPFLAGS)                 \
-                 $(GETTEXT)                     \
+                 $(intl_CPPFLAGS)               \
                  -I$(top_srcdir)/libs/parser    \
                  -I$(top_builddir)/libs/images  \
                  -DGUI_PATH='"$(pkgdatadir)/gconf.glade"'

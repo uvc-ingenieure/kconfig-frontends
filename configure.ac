@@ -215,7 +215,7 @@ AC_CHECK_FUNCS([ gettimeofday mkdir regcomp setlocale uname ])
 
 #----------------------------------------
 # Check for gettext, for the kconfig frontends
-AC_SUBST([GETTEXT])
+AC_SUBST([intl_CPPFLAGS])
 AC_CHECK_HEADERS(
     [libintl.h],
     [ac_ct_gettext_hdr=$ac_header; break],
@@ -225,7 +225,7 @@ AS_IF(
     [AC_CHECK_DECL(
         [gettext],,
         [AC_MSG_WARN([gettext is missing, frontends will not be localised])
-         GETTEXT=-DKBUILD_NO_NLS],
+         intl_CPPFLAGS=-DKBUILD_NO_NLS],
         [#include <$ac_ct_gettext_hdr>])])
 
 #----------------------------------------

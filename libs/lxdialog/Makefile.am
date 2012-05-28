@@ -11,5 +11,5 @@ libkconfig_lxdialog_a_SOURCES = \
 
 libkconfig_lxdialog_a_CPPFLAGS = $(AM_CPPFLAGS)                   \
                                  -DCURSES_LOC='"${CURSES_LOC}"'   \
-                                 $(GETTEXT)
+                                 $(intl_CPPFLAGS)
 liblxdialog_a_CFLAGS = $(AM_CFLAGS) $(kf_CFLAGS)

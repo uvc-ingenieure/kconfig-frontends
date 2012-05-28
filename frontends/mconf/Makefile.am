@@ -3,7 +3,7 @@ bin_PROGRAMS = mconf
 mconf_SOURCES = mconf.c
 mconf_CPPFLAGS = $(AM_CPPFLAGS)                 \
                  -DCURSES_LOC='"$(CURSES_LOC)"' \
-                 $(GETTEXT)                     \
+                 $(intl_CPPFLAGS)               \
                  -I$(top_srcdir)/libs           \
                  -I$(top_srcdir)/libs/parser
 mconf_CFLAGS = $(AM_CFLAGS) \
