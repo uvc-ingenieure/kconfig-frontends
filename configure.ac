@@ -200,7 +200,7 @@ AC_SUBST([AM_YFLAGS], ["-t -l -p zconf"])
 # Check for standard headers
 AC_HEADER_STDC
 AC_HEADER_STDBOOL
-AC_CHECK_HEADERS([ fcntl.h libintl.h limits.h locale.h ])
+AC_CHECK_HEADERS([ fcntl.h limits.h locale.h ])
 AC_CHECK_HEADERS([ stdlib.h string.h sys/time.h unistd.h ])
 AC_TYPE_SIZE_T
 
@@ -219,7 +219,8 @@ AC_SUBST([intl_CPPFLAGS])
 AC_CHECK_HEADERS(
     [libintl.h],
     [ac_ct_gettext_hdr=$ac_header; break],
-    [AC_MSG_WARN([libintl is missing, frontends will not be localised])])
+    [AC_MSG_WARN([libintl is missing, frontends will not be localised])
+     intl_CPPFLAGS=-DKBUILD_NO_NLS])
 AS_IF(
     [test -n "$ac_ct_gettext_hdr"],
     [AC_CHECK_DECL(
