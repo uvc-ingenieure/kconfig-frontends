@@ -7,7 +7,8 @@ dist_EXTRA_libkconfig_parser_la_SOURCES = \
     confdata.c menu.c symbol.c util.c     \
     expr.c expr.h lkc.h lkc_proto.h
 libkconfig_parser_la_CPPFLAGS = -DROOTMENU="\"$(root_menu)\""   \
-                                -DCONFIG_=\"$(config_prefix)\"
+                                -DCONFIG_=\"$(config_prefix)\"  \
+                                $(intl_CPPFLAGS)
 libkconfig_parser_la_CFLAGS = $(AM_CFLAGS) $(kf_CFLAGS)
 libkconfig_parser_la_LDFLAGS = -release $(KCONFIGPARSER_LIB_VERSION)
 
@@ -19,7 +20,7 @@ CLEANFILES = hconf.c lconf.c yconf.c
 EXTRA_DIST = yconf.y.patch
 
 # Can't use libkconfig_parser_a_CPPFLAGS, as it breaks dependencies
-yconf.o: CPPFLAGS+=$(intl_CPPFLAGS)
+#yconf.o: CPPFLAGS+=$(intl_CPPFLAGS)
 
 .gperf.c:
 	$(GPERF) -t --output-file $@ -a -C -E -g -k 1,3,$$ -p -t $<
