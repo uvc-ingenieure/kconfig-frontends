@@ -99,6 +99,13 @@ AC_ARG_ENABLE(
         [install utilities to manage .config files (default=no)])])
 AC_SUBST([enable_utils], [${enable_utils:-yes}])
 
+AC_ARG_ENABLE(
+    [L10n],
+    [AS_HELP_STRING(
+        [--disable-L10n],
+        [enable localisation (L10n) (default=auto)])])
+AC_SUBST([enable_L10n], [${enable_L10n:-yes}])
+
 #----------------------------------------
 # Options to selectively enable/disable frontends
 # All are selected by default
@@ -215,11 +222,13 @@ AC_CHECK_FUNCS([ gettimeofday mkdir regcomp setlocale uname ])
 
 #----------------------------------------
 # Check for gettext, for the kconfig frontends
-[has_gettext=yes]
-AC_CHECK_HEADERS(
-    [libintl.h],
-    [ac_ct_gettext_hdr=$ac_header; break],
-    [has_gettext=no])
+[has_gettext="$enable_L10n"]
+AS_IF(
+    [test "$has_gettext" = "yes"],
+    [AC_CHECK_HEADERS(
+        [libintl.h],
+        [ac_ct_gettext_hdr=$ac_header; break],
+        [has_gettext=no])])
 AS_IF(
     [test "$has_gettext" = "yes"],
     [AC_CHECK_DECL(
