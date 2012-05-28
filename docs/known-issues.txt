@@ -1,0 +1,66 @@
+This file lists the known issues encountered while packaging the kconfig
+frontends.
+
+----------------------------------------
+
+Under Cygwin, the build does not succeed with both -Wall and -Werror.
+
+----------------------------------------
+
+Under Cygwin, the nconf frontends does not build, because headers are
+hard-coded, and patching them would be too intrusive.
+
+You have to explicitly disable nconf at ./configure time:
+    ./configure --disable-nconf
+
+----------------------------------------
+
+Under Cygwin, gettext is not in the C library, but in an external libintl,
+so it must be explicitly linked in. The packaging does check this situation,
+and correctly link against libintl. libintl depends on some other libraries
+(libncursesw and libiconv). Simply linking against libintl does pull the
+dependencies in.
+
+However, at least libiconv is not installed by default, even if the devel
+libintl package is installed. This is considered a bug in the Cygwin
+installation mechanism.
+
+To fix it, re-run the Cygwin install process, and expressly select:
+  - Devel/libiconv
+
+(and say 'yes' if you are prompted for required packages), and re-build
+(no need to re-run .configure).
+
+----------------------------------------
+
+Under Cygwin, gtk+2.0 depends on:
+  - libglitz
+  - libxcb-render-util
+  - libpng12
+
+but they are not installed by default, even if the gtk devel package is
+installed.
+
+To fix it, re-run the Cygwin install process, and expressly select:
+  - X11/libglitz-devel 
+  - X11/libxcb-render-util-devel
+  - Libs/libpng12-devel
+
+(and say 'yes' if you are prompted for required packages), and re-build
+(no need to re-run ./configure).
+
+gtk+2.0 is used by the gconf frontend.
+
+----------------------------------------
+
+Under Cygwin, Qt4 depends on libffi, but it is only available if you
+installed the gcc4 package (the gcc package is a gcc-3).
+
+To fix it, re-run the Cygwin install process, and expressly select:
+  - Devel/gcc4
+
+(and say 'yes' if you are prompted for required packages). You'll need
+to re-run ./configure.
+
+Qt4 is used by the qconf frontend.
+----------------------------------------
