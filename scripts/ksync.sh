@@ -49,7 +49,7 @@ while read k_file trash kf_file; do
     if [ -f "${kf_file}.patch" ]; then
         patch --no-backup-if-mismatch -g0 -F1 -p1 -f <"${kf_file}.patch"
     fi
-done <scripts/kernel2kfrontends.list
+done <scripts/ksync.list
 
 # Save the changelog between the old cset and now
 printf "Synced-up these changes:\n"
