@@ -37,11 +37,10 @@ printf "%d.%d.%d%s %s %s\n%s\n"             \
        "${kf_version}"                      \
        >.version
 
-exec <scripts/kernel2kfrontends.list
 while read k_file trash kf_file; do
     mkdir -p "${kf_file%/*}"
     cp -v "${k_dir}/${k_file}" "${kf_file}"
     if [ -f "${kf_file}.patch" ]; then
         patch --no-backup-if-mismatch -g0 -F1 -p1 -f <"${kf_file}.patch"
     fi
-done
+done <scripts/kernel2kfrontends.list
