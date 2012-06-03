@@ -1,0 +1,4 @@
+MCA: delete all remaining traces of microchannel bus support.
+scripts/config: properly report and set string options
+kbuild: all{no,yes,mod,def,rand}config only read files when instructed to.
+kconfig: Add error handling to KCONFIG_ALLCONFIG
