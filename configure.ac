@@ -30,6 +30,17 @@ AS_IF(
 
 AM_INIT_AUTOMAKE
 
+AS_IF(
+    [test "$(./scripts/version.sh --internal)" = "hg"],
+    [AM_SILENT_RULES],
+    [AM_SILENT_RULES([yes])])
+
+AS_IF(
+    [test $AM_DEFAULT_VERBOSITY -eq 0],
+    [SILENT_MAKEFLAGS="--no-print-directory -s"],
+    [SILENT_MAKEFLAGS=""])
+AC_SUBST([SILENT_MAKEFLAGS])
+
 #----------------------------------------
 # Prepare libtool
 LT_PREREQ([2.2.6])
