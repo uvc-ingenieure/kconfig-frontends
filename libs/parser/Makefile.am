@@ -22,8 +22,12 @@ EXTRA_DIST = yconf.y.patch
 # Can't use libkconfig_parser_a_CPPFLAGS, as it breaks dependencies
 #yconf.o: CPPFLAGS+=$(intl_CPPFLAGS)
 
+AM_V_GPERF = $(AM_V_GPERF_$(V))
+AM_V_GPERF_ = $(AM_V_GPERF_$(AM_DEFAULT_VERBOSITY))
+AM_V_GPERF_0 = @echo "  GPERF " $@;
+
 .gperf.c:
-	$(GPERF) -t --output-file $@ -a -C -E -g -k 1,3,$$ -p -t $<
+	$(AM_V_GPERF)$(GPERF) -t --output-file $@ -a -C -E -g -k 1,3,$$ -p -t $<
 
 # The following rule produces a warning:
 #   libs/parser/Makefile.am:41: user target `.l.c' defined here...
@@ -41,4 +45,4 @@ EXTRA_DIST = yconf.y.patch
 # also renamed, but automake does not now that, and make would fail
 # because it would think no file was generated.
 .l.c:
-	$(LEXCOMPILE) -o$@ $<
+	$(AM_V_LEX)$(LEXCOMPILE) -o$@ $<
