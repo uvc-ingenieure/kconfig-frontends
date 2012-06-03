@@ -1,5 +1,5 @@
-dist_bin_SCRIPTS =  tweak diff merge
-dist_bin_SCRIPTS += streamline
+bin_SCRIPTS =  tweak
+dist_bin_SCRIPTS = diff merge streamline
 
 if COND_utils_gettext
     MAYBE_utils_gettext = gettext
@@ -12,3 +12,10 @@ gettext_CPPFLAGS = $(AM_CPPFLAGS)   \
 gettext_CFLAGS = $(AM_CFLAGS) $(kf_CFLAGS)
 gettext_LDADD = $(top_builddir)/libs/parser/libkconfig-parser.la    \
                 $(intl_LIBS)
+CLEANFILES = tweak
+EXTRA_DIST = tweak.in tweak.in.patch
+
+tweak: tweak.in
+	$(AM_V_GEN)$(SED) -r -e "s/@CONFIG_@/$(config_prefix)/g"    \
+	                  $< >$@
+	@chmod +x $@

@@ -27,7 +27,7 @@ scripts/kconfig/menu.c                            -->  libs/parser/menu.c
 scripts/kconfig/symbol.c                          -->  libs/parser/symbol.c
 scripts/kconfig/util.c                            -->  libs/parser/util.c
 scripts/kconfig/zconf.y                           -->  libs/parser/yconf.y
-scripts/config                                    -->  utils/tweak
+scripts/config                                    -->  utils/tweak.in
 scripts/diffconfig                                -->  utils/diff
 scripts/kconfig/merge_config.sh                   -->  utils/merge
 scripts/kconfig/streamline_config.pl              -->  utils/streamline
