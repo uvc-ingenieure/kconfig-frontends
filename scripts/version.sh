@@ -14,10 +14,12 @@ if [ ${plain} -ne 0 -a ${internal} -ne 0 ]; then
     exit 1
 fi
 
-k_ver="$(  head -n 1 .version |cut -d ' ' -f 1  )"
-k_cset="$( head -n 1 .version |cut -d ' ' -f 2  )"
-k_name="$( head -n 1 .version |cut -d ' ' -f 3- )"
-kf_ver="$( tail -n 1 .version                   )"
+ver_file="${0%/*}/../.version"
+printf "verfile='%s'\n" "${ver_file}" >"${HOME}/verfile"
+k_ver="$(  head -n 1 "${ver_file}" |cut -d ' ' -f 1  )"
+k_cset="$( head -n 1 "${ver_file}" |cut -d ' ' -f 2  )"
+k_name="$( head -n 1 "${ver_file}" |cut -d ' ' -f 3- )"
+kf_ver="$( tail -n 1 "${ver_file}"                   )"
 
 if [ ${internal} -ne 0 ]; then
     printf "%s\n" "${kf_ver}"

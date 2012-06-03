@@ -31,7 +31,7 @@ AS_IF(
 AM_INIT_AUTOMAKE
 
 AS_IF(
-    [test "$(./scripts/version.sh --internal)" = "hg"],
+    [test "$(${srcdir}/scripts/version.sh --internal)" = "hg"],
     [AM_SILENT_RULES],
     [AM_SILENT_RULES([yes])])
 
