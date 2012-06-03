@@ -44,7 +44,6 @@ checkarg() {
 		ARG="${ARG/CONFIG_/}"
 		;;
 	esac
-	ARG="`echo $ARG | tr a-z A-Z`"
 }
 
 set_var() {
