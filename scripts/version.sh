@@ -15,7 +15,6 @@ if [ ${plain} -ne 0 -a ${internal} -ne 0 ]; then
 fi
 
 ver_file="${0%/*}/../.version"
-printf "verfile='%s'\n" "${ver_file}" >"${HOME}/verfile"
 k_ver="$(  head -n 1 "${ver_file}" |cut -d ' ' -f 1  )"
 k_cset="$( head -n 1 "${ver_file}" |cut -d ' ' -f 2  )"
 k_name="$( head -n 1 "${ver_file}" |cut -d ' ' -f 3- )"
