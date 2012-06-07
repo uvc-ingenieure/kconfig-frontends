@@ -1,5 +1,5 @@
-bin_SCRIPTS =  tweak
-dist_bin_SCRIPTS = diff merge streamline
+bin_SCRIPTS = tweak
+dist_bin_SCRIPTS = diff merge
 
 if COND_utils_gettext
     MAYBE_utils_gettext = gettext
