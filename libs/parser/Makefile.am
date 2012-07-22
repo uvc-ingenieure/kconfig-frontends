@@ -20,9 +20,6 @@ BUILT_SOURCES = hconf.c lconf.c
 CLEANFILES = hconf.c lconf.c yconf.c
 EXTRA_DIST = yconf.y.patch
 
-# Can't use libkconfig_parser_a_CPPFLAGS, as it breaks dependencies
-#yconf.o: CPPFLAGS+=$(intl_CPPFLAGS)
-
 AM_V_GPERF = $(AM_V_GPERF_$(V))
 AM_V_GPERF_ = $(AM_V_GPERF_$(AM_DEFAULT_VERBOSITY))
 AM_V_GPERF_0 = @echo "  GPERF " $@;
