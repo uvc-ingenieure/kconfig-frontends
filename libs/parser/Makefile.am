@@ -10,7 +10,8 @@ libkconfig_parser_la_CPPFLAGS = -DROOTMENU="\"$(root_menu)\""   \
                                 -DCONFIG_=\"$(config_prefix)\"  \
                                 $(intl_CPPFLAGS)
 libkconfig_parser_la_CFLAGS = $(AM_CFLAGS) $(kf_CFLAGS)
-libkconfig_parser_la_LDFLAGS = -release $(KCONFIGPARSER_LIB_VERSION)
+libkconfig_parser_la_LDFLAGS = -release $(KCONFIGPARSER_LIB_VERSION) -no-undefined
+libkconfig_parser_la_LIBADD = $(intl_LIBS)
 
 kconfig_includedir = $(includedir)/kconfig
 kconfig_include_HEADERS = lkc.h expr.h lkc_proto.h
