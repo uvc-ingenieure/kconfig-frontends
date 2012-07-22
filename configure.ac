@@ -271,7 +271,7 @@ AS_IF(
      LIBS_old="$LIBS"
      LIBS=
      AC_CHECK_HEADERS(
-        [ncurses/ncurses.h ncurses/curses.h ncursesw/curses.h ncurses.h curses.h],
+        [ncursesw/curses.h ncurses/ncurses.h ncurses/curses.h ncurses.h curses.h],
         [CURSES_LOC=$ac_header; break])
      AS_IF(
         [test -z "$CURSES_LOC"],
