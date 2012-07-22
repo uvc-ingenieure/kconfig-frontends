@@ -301,6 +301,11 @@ AS_IF(
 AS_IF(
     [test "$need_panel_menu" = "yes" -o "$need_panel_menu" = "auto"],
     [AC_SUBST([ncurses_extra_LIBS])
+     AC_SUBST([ncurses_extra_CPPFLAGS])
+     AS_CASE(
+        [$CURSES_LOC],
+        [ncursesw/*],[ncurses_extra_CPPFLAGS="-I/usr/include/ncursesw"],
+        [ncurses/*],[ncurses_extra_CPPFLAGS="-I/usr/include/ncurses"])
      LIBS_old="$LIBS"
      LIBS=
      AC_SEARCH_LIBS(
