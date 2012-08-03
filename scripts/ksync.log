@@ -2,3 +2,11 @@ MCA: delete all remaining traces of microchannel bus support.
 scripts/config: properly report and set string options
 kbuild: all{no,yes,mod,def,rand}config only read files when instructed to.
 kconfig: Add error handling to KCONFIG_ALLCONFIG
+nconf: add u, d command keys in scroll windows
+menuconfig: add u, d, q command keys in text boxes
+scripts/config: fix double-quotes un-escaping
+kconfig: allow long lines in config file
+kconfig/nconf: fix compile with ncurses reentrant API
+scripts/config: add option to undef a symbol
+scripts/config: allow alternate prefix to config option symbol
+scripts/config: add option to not upper-case symbols

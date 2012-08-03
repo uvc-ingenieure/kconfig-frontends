@@ -1,7 +1,8 @@
 #!/bin/bash
 # Manipulate options in a .config file from the command line
 
-CONFIG_="@CONFIG_@"
+# If no prefix forced, use the default @CONFIG_@
+CONFIG_="${CONFIG_-@CONFIG_@}"
 
 usage() {
 	cat >&2 <<EOL
@@ -16,6 +17,7 @@ commands:
 	                     Set option to "string"
 	--set-val option value
 	                     Set option to value
+	--undefine|-u option Undefine option
 	--state|-s option    Print state of option (n,y,m,undef)
 
 	--enable-after|-E beforeopt option
@@ -28,10 +30,17 @@ commands:
 	commands can be repeated multiple times
 
 options:
-	--file .config file to change (default .config)
+	--file config-file   .config file to change (default .config)
+	--keep-case|-k       Keep next symbols' case (dont' upper-case it)
 
 config doesn't check the validity of the .config file. This is done at next
- make time.
+make time.
+
+By default, config will upper-case the given symbol. Use --keep-case to keep
+the case of all following symbols unchanged.
+
+config uses '@CONFIG_@' as the default symbol prefix. Set the environment
+variable CONFIG_ to the prefix to use. Eg.: CONFIG_="FOO_" config ...
 EOL
 	exit 1
 }
@@ -46,6 +55,9 @@ checkarg() {
 		ARG="${ARG/${CONFIG_}/}"
 		;;
 	esac
+	if [ "$MUNGE_CASE" = "yes" ] ; then
+		ARG="`echo $ARG | tr a-z A-Z`"
+	fi
 }
 
 set_var() {
@@ -62,6 +74,12 @@ set_var() {
 	fi
 }
 
+undef_var() {
+	local name=$1
+
+	sed -ri "/^($name=|# $name is not set)/d" "$FN"
+}
+
 if [ "$1" = "--file" ]; then
 	FN="$2"
 	if [ "$FN" = "" ] ; then
@@ -76,10 +94,16 @@ if [ "$1" = "" ] ; then
 	usage
 fi
 
+MUNGE_CASE=yes
 while [ "$1" != "" ] ; do
 	CMD="$1"
 	shift
 	case "$CMD" in
+	--keep-case|-k)
+		MUNGE_CASE=no
+		shift
+		continue
+		;;
 	--refresh)
 		;;
 	--*-after)
@@ -117,6 +141,9 @@ while [ "$1" != "" ] ; do
 		set_var "${CONFIG_}$ARG" "${CONFIG_}$ARG=$1"
 		shift
 		;;
+	--undefine|-u)
+		undef_var "${CONFIG_}$ARG"
+		;;
 
 	--state|-s)
 		if grep -q "# ${CONFIG_}$ARG is not set" $FN ; then
@@ -129,7 +156,7 @@ while [ "$1" != "" ] ; do
 				V="${V/#${CONFIG_}$ARG=/}"
 				V="${V/#\"/}"
 				V="${V/%\"/}"
-				V="${V/\\\"/\"}"
+				V="${V//\\\"/\"}"
 				echo "${V}"
 			fi
 		fi
