@@ -36,7 +36,7 @@ To fix it, re-run the Cygwin install process, and expressly select:
 Under Cygwin, gtk+2.0 depends on:
   - libglitz
   - libxcb-render-util
-  - libpng12
+  - libpng15
 
 but they are not installed by default, even if the gtk devel package is
 installed.
@@ -44,12 +44,23 @@ installed.
 To fix it, re-run the Cygwin install process, and expressly select:
   - X11/libglitz-devel 
   - X11/libxcb-render-util-devel
-  - Libs/libpng12-devel
+  - Libs/libpng15-devel
 
 (and say 'yes' if you are prompted for required packages), and re-build
 (no need to re-run ./configure).
 
 gtk+2.0 is used by the gconf frontend.
+
+----------------------------------------
+
+Under Cygwin, libglade's .la file explictly links against -lpng12, but
+the version of libpng is 1.5, not 1.2.
+
+To fix it, you can do either of:
+  - disable the gconf frontend with --disable-gconf, or
+  - edit /lib/libglade-2.0.la, and change '-lpng12' to '-lpng'.
+
+libglade is used by the gconf frontend.
 
 ----------------------------------------
 
@@ -63,4 +74,5 @@ To fix it, re-run the Cygwin install process, and expressly select:
 to re-run ./configure.
 
 Qt4 is used by the qconf frontend.
+
 ----------------------------------------
