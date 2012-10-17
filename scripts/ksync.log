@@ -10,3 +10,12 @@ kconfig/nconf: fix compile with ncurses reentrant API
 scripts/config: add option to undef a symbol
 scripts/config: allow alternate prefix to config option symbol
 scripts/config: add option to not upper-case symbols
+kconfig: replace 'oldnoconfig' with 'olddefconfig', and keep the old name as an alias
+menuconfig: Assign jump keys per-page instead of globally
+menuconfig: Do not open code textbox scroll up/down
+menuconfig: Add jump keys to search results
+menuconfig: Extend dialog_textbox so that it can return to a scrolled position
+menuconfig: Extend dialog_textbox so that it can exit on arbitrary keypresses
+menuconfig: Remove superfluous conditionnal
+kconfig: document oldnoconfig to what it really does in conf.c
+kconfig/mconf.c: revision of curses initialization.
