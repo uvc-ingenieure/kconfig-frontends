@@ -6,6 +6,7 @@ syntax: glob
 *.a
 *.la
 *.lai
+*.exe
 
 frontends/conf/conf
 frontends/conf/*-conf
