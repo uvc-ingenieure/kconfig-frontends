@@ -176,7 +176,6 @@ AC_SUBST([kf_CFLAGS], ["$wall_CFLAGS $werror_CFLAGS"])
 
 #----------------------------------------
 # Dependencies that will be needed, depending on the frontends
-[need_circleq="$enable_mconf"]
 AS_CASE(
     ["$enable_mconf":"$enable_nconf"],
     [*yes*],  [need_curses=yes],
@@ -233,6 +232,23 @@ AC_CHECK_FUNCS([ strcasecmp strchr strcspn strdup strncasecmp strpbrk strrchr st
 AC_CHECK_FUNCS([ gettimeofday mkdir regcomp setlocale uname ])
 
 #----------------------------------------
+# Check headers and macros for circle queues
+AC_CHECK_HEADERS(
+    [sys/queue.h],
+    [AC_MSG_CHECKING([for CIRCLEQ_XXX macros in sys/queue.h])
+     AC_PREPROC_IFELSE(
+        [AC_LANG_PROGRAM(
+            [[#include <sys/queue.h>
+              #ifndef CIRCLEQ_HEAD
+              #error no
+              #endif]]
+            [[]])],
+        [AC_MSG_RESULT([yes])],
+        [AC_MSG_RESULT([no])
+         AC_MSG_ERROR([CIRCLEQ_XXX macros not defined in sys/queue.h (parser)])])],
+    [AC_MSG_ERROR([could not find sys/queue.h header (parser)])])
+
+#----------------------------------------
 # Check for gettext, for the kconfig frontends
 [has_gettext="$enable_L10n"]
 AS_IF(
@@ -262,36 +278,6 @@ AS_IF(
     [intl_CPPFLAGS=-DKBUILD_NO_NLS])
 AC_SUBST([intl_CPPFLAGS])
 AC_SUBST([intl_LIBS])
-
-#----------------------------------------
-# Check headers and macros for circle queues
-AS_IF(
-    [test "$need_circleq" = "yes" -o "$need_circleq" = "auto"],
-    [AC_CHECK_HEADERS(
-        [sys/queue.h],
-        [AC_MSG_CHECKING([for CIRCLEQ_XXX macros in sys/queue.h])
-         AC_PREPROC_IFELSE(
-            [AC_LANG_PROGRAM(
-                [[#include <sys/queue.h>
-                  #ifndef CIRCLEQ_HEAD
-                  #error no
-                  #endif]]
-                [[]])],
-            [AC_MSG_RESULT([yes])
-             has_circleq=yes],
-            [AC_MSG_RESULT([no])
-             AS_IF(
-                [test "$need_circleq" = "yes"],
-                [AC_MSG_ERROR([CIRCLEQ_XXX macros not defined in sys/queue.h (frontend: mconf)])],
-                [has_circleq=no])])],
-        [AS_IF(
-            [test "$need_circleq" = "yes"],
-            [AC_MSG_ERROR([could not find sys/queue.h header (frontend: mconf)])],
-            [has_circleq=no])])])
-
-AS_IF(
-    [test "$has_circleq" = "no"],
-    [enable_mconf=no])
 
 #----------------------------------------
 # Check for ncurses, for the mconf & nconf frontends
