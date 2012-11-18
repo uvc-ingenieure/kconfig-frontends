@@ -19,3 +19,4 @@ menuconfig: Extend dialog_textbox so that it can exit on arbitrary keypresses
 menuconfig: Remove superfluous conditionnal
 kconfig: document oldnoconfig to what it really does in conf.c
 kconfig/mconf.c: revision of curses initialization.
+menuconfig: Replace CIRCLEQ by list_head-style lists.

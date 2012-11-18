@@ -233,23 +233,6 @@ AC_CHECK_FUNCS([ strcasecmp strchr strcspn strdup strncasecmp strpbrk strrchr st
 AC_CHECK_FUNCS([ gettimeofday mkdir regcomp setlocale uname ])
 
 #----------------------------------------
-# Check headers and macros for circle queues
-AC_CHECK_HEADERS(
-    [sys/queue.h],
-    [AC_MSG_CHECKING([for CIRCLEQ_XXX macros in sys/queue.h])
-     AC_PREPROC_IFELSE(
-        [AC_LANG_PROGRAM(
-            [[#include <sys/queue.h>
-              #ifndef CIRCLEQ_HEAD
-              #error no
-              #endif]]
-            [[]])],
-        [AC_MSG_RESULT([yes])],
-        [AC_MSG_RESULT([no])
-         AC_MSG_ERROR([CIRCLEQ_XXX macros not defined in sys/queue.h (parser)])])],
-    [AC_MSG_ERROR([could not find sys/queue.h header (parser)])])
-
-#----------------------------------------
 # Check for gettext, for the kconfig frontends
 [has_gettext="$enable_L10n"]
 AS_IF(
