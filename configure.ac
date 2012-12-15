@@ -108,7 +108,7 @@ AC_ARG_ENABLE(
     [utils],
     [AS_HELP_STRING(
         [--disable-utils],
-        [install utilities to manage .config files (default=no)])])
+        [install utilities to manage .config files (default=yes)])])
 AC_SUBST([enable_utils], [${enable_utils:-yes}])
 
 AC_ARG_ENABLE(
