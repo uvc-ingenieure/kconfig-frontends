@@ -20,3 +20,4 @@ menuconfig: Remove superfluous conditionnal
 kconfig: document oldnoconfig to what it really does in conf.c
 kconfig/mconf.c: revision of curses initialization.
 menuconfig: Replace CIRCLEQ by list_head-style lists.
+scripts/config: Fix wrong "shift" for --keep-case
