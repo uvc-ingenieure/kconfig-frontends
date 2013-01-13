@@ -216,23 +216,6 @@ AC_PROG_YACC
 AC_SUBST([AM_YFLAGS], ["-t -l -p zconf"])
 
 #----------------------------------------
-# Check for standard headers
-AC_HEADER_STDC
-AC_HEADER_STDBOOL
-AC_CHECK_HEADERS([ fcntl.h limits.h locale.h ])
-AC_CHECK_HEADERS([ stdlib.h string.h sys/time.h unistd.h ])
-AC_TYPE_SIZE_T
-
-#----------------------------------------
-# Checks for library functions.
-AC_FUNC_MALLOC
-AC_FUNC_REALLOC
-AC_FUNC_ALLOCA
-AC_CHECK_FUNCS([ bzero memmove memset ])
-AC_CHECK_FUNCS([ strcasecmp strchr strcspn strdup strncasecmp strpbrk strrchr strspn strtol ])
-AC_CHECK_FUNCS([ gettimeofday mkdir regcomp setlocale uname ])
-
-#----------------------------------------
 # Check for gettext, for the kconfig frontends
 [has_gettext="$enable_L10n"]
 AS_IF(
