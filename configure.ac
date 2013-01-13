@@ -28,7 +28,7 @@ AS_IF(
     [test "$program_prefix" = NONE],
     [program_prefix=kconfig-])
 
-AM_INIT_AUTOMAKE
+AM_INIT_AUTOMAKE([foreign])
 
 AS_IF(
     [test "$(${srcdir}/scripts/version.sh --internal)" = "hg"],
