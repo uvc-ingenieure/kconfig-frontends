@@ -50,12 +50,13 @@ LT_INIT([disable-static])
 #---------------------------------------------------------------------------
 # Set misc options
 
-# By default, do not build with -Wall, unless the user asks for it
+# By default, do build with -Wall, unless the user asks not to
+[wall_CFLAGS=-Wall]
 AC_ARG_ENABLE(
     [wall],
     [AS_HELP_STRING(
-        [--enable-wall],
-        [build with -Wall (default=no)])],
+        [--disable-wall],
+        [build with -Wall (default=yes)])],
     [AS_CASE(
         ["$enableval"],
         [yes], [wall_CFLAGS=-Wall],
