@@ -63,7 +63,13 @@ AC_ARG_ENABLE(
         [*],   [wall_CFLAGS=""])])
 AC_SUBST([wall_CFLAGS],[${wall_CFLAGS}])
 
-# By default, do not build with -Werror, unless the user asks for it
+# For releases, do not build with -Werror, unless the user explcitly
+# requests to build with -Werror.
+# For the devel tree, do build with -Werror by default, unless user
+# explicitly disables -Werror
+AS_IF(
+    [test "$(${srcdir}/scripts/version.sh --internal)" = "hg"],
+    [werror_CFLAGS=-Werror])
 AC_ARG_ENABLE(
     [werror],
     [AS_HELP_STRING(
