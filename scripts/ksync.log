@@ -21,3 +21,19 @@ kconfig: document oldnoconfig to what it really does in conf.c
 kconfig/mconf.c: revision of curses initialization.
 menuconfig: Replace CIRCLEQ by list_head-style lists.
 scripts/config: Fix wrong "shift" for --keep-case
+kbuild: Fix missing '\n' for NEW symbols in yes "" | make oldconfig >conf.new
+kconfig: nconf: rewrite labels of function keys line
+kconfig: nconf: rewrite help texts
+kconfig: fix a compiliation error when using make xconfig
+nconf: function keys line, change background color for better readability
+menuconfig: Get rid of the top-level entries for "Load an Alternate/Save an Alternate"
+menuconfig: Add Save/Load buttons
+kconfig:lxdialog: remove duplicate code
+menuconfig:inputbox: support navigate input position
+kconfig: document use of CONFIG_ environment variable
+merge_config.sh: Add option to specify output dir
+Revert "kconfig-language: add to hints"
+kconfig: Fix malloc handling in conf tools
+kconfig: get CONFIG_ prefix from the environment
+kconfig: add a function to get the CONFIG_ prefix
+kconfig: remove CONFIG_ from string constants
