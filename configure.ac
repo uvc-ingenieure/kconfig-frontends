@@ -291,12 +291,12 @@ AS_IF(
 # Check for libpanel and libmenu, for the nconf frontend
 AS_IF(
     [test "$need_panel_menu" = "yes" -o "$need_panel_menu" = "auto"],
-    [AC_SUBST([ncurses_extra_LIBS])
-     AC_SUBST([ncurses_extra_CPPFLAGS])
+    [AC_SUBST([ncurses_nconf_CPPFLAGS])
+     AC_SUBST([ncurses_panel_menu_LIBS])
      AS_CASE(
         [$CURSES_LOC],
-        [ncursesw/*],[ncurses_extra_CPPFLAGS="-I/usr/include/ncursesw"],
-        [ncurses/*],[ncurses_extra_CPPFLAGS="-I/usr/include/ncurses"])
+        [ncursesw/*],[ncurses_nconf_CPPFLAGS="-I/usr/include/ncursesw"],
+        [ncurses/*],[ncurses_nconf_CPPFLAGS="-I/usr/include/ncurses"])
      LIBS_old="$LIBS"
      LIBS=
      AC_SEARCH_LIBS(
@@ -321,7 +321,7 @@ AS_IF(
             [test "$need_panel_menu" = "yes"],
             [AC_MSG_ERROR([could not find libmenu library (frontend: nconf)])],
             [has_panel_menu=no])])
-     ncurses_extra_LIBS="$LIBS"
+     ncurses_panel_menu_LIBS="$LIBS"
      LIBS=$LIBS_old])
 
 AS_IF(
