@@ -257,13 +257,13 @@ AC_SUBST([intl_LIBS])
 # Check for ncurses, for the mconf & nconf frontends
 AS_IF(
     [test "$need_curses" = "yes" -o "$need_curses" = "auto"],
-    [AC_SUBST([CURSES_LOC])
+    [AC_SUBST([ncurses_mconf_CPPFLAGS])
      AC_SUBST([ncurses_LIBS])
      LIBS_old="$LIBS"
      LIBS=
      AC_CHECK_HEADERS(
         [ncursesw/curses.h ncurses/ncurses.h ncurses/curses.h ncurses.h curses.h],
-        [CURSES_LOC=$ac_header; break])
+        [CURSES_LOC=$ac_header; ncurses_mconf_CPPFLAGS=-DCURSES_LOC=\\\"$ac_header\\\"; break])
      AS_IF(
         [test -z "$CURSES_LOC"],
         [AS_IF(
