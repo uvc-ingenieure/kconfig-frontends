@@ -270,6 +270,9 @@ AS_IF(
             [test "$need_curses" = "yes"],
             [AC_MSG_ERROR([could not find curses headers (frontends: mconf/nconf)])],
             [has_curses=no])])
+     AS_CASE(
+        [$CURSES_LOC],
+        [ncursesw/*],[ncurses_mconf_CPPFLAGS="$ncurses_mconf_CPPFLAGS -DNCURSES_WIDECHAR=1"])
      AC_SEARCH_LIBS(
         [initscr],
         [ncursesw ncurses curses],
