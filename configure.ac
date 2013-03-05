@@ -283,6 +283,10 @@ AS_IF(
             [test "$need_curses" = "yes"],
             [AC_MSG_ERROR([could not find curses library (frontends: mconf/nconf)])],
             [has_curses=no])])
+     AC_SEARCH_LIBS(
+        [setupterm],
+        [tinfo],
+        [break])
      ncurses_LIBS="$LIBS"
      LIBS=$LIBS_old])
 
