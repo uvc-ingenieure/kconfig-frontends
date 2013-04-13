@@ -31,7 +31,7 @@ AS_IF(
 AM_INIT_AUTOMAKE([foreign])
 
 AS_IF(
-    [test "$(${srcdir}/scripts/version.sh --internal)" = "hg"],
+    [test "$(${srcdir}/scripts/version.sh --internal)" = "git"],
     [AM_SILENT_RULES],
     [AM_SILENT_RULES([yes])])
 
@@ -68,7 +68,7 @@ AC_SUBST([wall_CFLAGS],[${wall_CFLAGS}])
 # For the devel tree, do build with -Werror by default, unless user
 # explicitly disables -Werror
 AS_IF(
-    [test "$(${srcdir}/scripts/version.sh --internal)" = "hg"],
+    [test "$(${srcdir}/scripts/version.sh --internal)" = "git"],
     [werror_CFLAGS=-Werror])
 AC_ARG_ENABLE(
     [werror],
