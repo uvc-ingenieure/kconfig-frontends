@@ -76,3 +76,11 @@ to re-run ./configure.
 Qt4 is used by the qconf frontend.
 
 ----------------------------------------
+
+Under MacOS X, the build does not succeed with both -Wall and -Werror. It fails
+with the error:
+  menu.c: In function 'get_symbol_str':
+  menu.c:515: warning: 'jump' may be used uninitialized in this function
+[Tested under MacOS X 10.6 with i686-apple-darwin10-gcc-4.2.1 build 5666 (dot 3)]
+
+----------------------------------------
