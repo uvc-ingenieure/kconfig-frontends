@@ -26,7 +26,7 @@ if [ ${internal} -ne 0 ]; then
 fi
 
 k_ver_plain="$( printf "%s" "${k_ver}"  \
-                |sed -r -e 's/-rc.*//;' )"
+                |sed -e 's/-rc.*//;' )"
 
 case "${kf_ver}" in
     git) kf_ver="-$( git rev-parse --short HEAD )"

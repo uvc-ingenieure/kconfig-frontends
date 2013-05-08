@@ -20,7 +20,7 @@ k_cset_old=$( head -n 1 .version |awk '{ print $(2); }' )
 
 # Get the kernel version
 eval $( head -n 5 "${k_dir}/Makefile"                       \
-        |sed -r -e 's/^/K_/; s/"//g; s/ = ?/="/; s/$/"/;'   \
+        |sed -e 's/^/K_/; s/"//g; s/ = \{0,1\}/="/; s/$/"/;'  \
       )
 k_cset="$( cd "${k_dir}";                   \
            git log -n 1 --pretty='format:%H' \
@@ -58,4 +58,4 @@ printf "Synced-up these changes:\n"
     "${k_cset_old}..${k_cset}"                  \
     ${k_files}                                  \
 )|tee -a "scripts/ksync.log"                    \
- |sed -r -e 's/^/    /;'
+ |sed -e 's/^/    /;'
