@@ -30,6 +30,10 @@ AS_IF(
 
 AM_INIT_AUTOMAKE([foreign])
 
+# For releases, enable silent rules, unless the user explicitly
+# disables them.
+# For the devel tree, do build with verbose output, unless user
+# explicitly enables silent rules
 AS_IF(
     [test "$(${srcdir}/scripts/version.sh --internal)" = "git"],
     [AM_SILENT_RULES],
@@ -63,7 +67,7 @@ AC_ARG_ENABLE(
         [*],   [wall_CFLAGS=""])])
 AC_SUBST([wall_CFLAGS],[${wall_CFLAGS}])
 
-# For releases, do not build with -Werror, unless the user explcitly
+# For releases, do not build with -Werror, unless the user explicitly
 # requests to build with -Werror.
 # For the devel tree, do build with -Werror by default, unless user
 # explicitly disables -Werror
