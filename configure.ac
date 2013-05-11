@@ -219,9 +219,22 @@ AS_IF(
 AS_IF(
     [test "$need_pkgconfig" = "yes"],
     [PKG_PROG_PKG_CONFIG()])
+# Look for `lex'. If it cannot be found, autoconf sets $LEX to ':'.
 AC_PROG_LEX
+AS_IF(
+    [test "$LEX" = ":"],
+    [AC_MSG_ERROR([can not find a lexer generator (such as lex or flex)])])
 AC_SUBST([AM_LFLAGS], ["-L -P zconf"])
+# Look for `yacc'. If it cannot be found, autoconf sets $YACC to 'yacc'.
 AC_PROG_YACC
+AS_IF(
+    [test "$YACC" = "yacc"],
+    [AC_CHECK_PROGS(
+        [YACC_IN_PATH],
+        [yacc])]
+     AS_IF(
+        [test -z "$YACC_IN_PATH"],
+        [AC_MSG_ERROR([can not find a parser generator (such as yacc or bison)])]))
 AC_SUBST([AM_YFLAGS], ["-t -l -p zconf"])
 
 #----------------------------------------
