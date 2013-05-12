@@ -37,3 +37,15 @@ kconfig: Fix malloc handling in conf tools
 kconfig: get CONFIG_ prefix from the environment
 kconfig: add a function to get the CONFIG_ prefix
 kconfig: remove CONFIG_ from string constants
+menuconfig: fix NULL pointer dereference when searching a symbol
+menuconfig: print more info for symbol without prompts
+kconfig: fix lists definition for C++
+Revert "kconfig: fix randomising choice entries in presence of KCONFIG_ALLCONFIG"
+kconfig: implement KCONFIG_PROBABILITY for randconfig
+kconfig: allow specifying the seed for randconfig
+kconfig: fix randomising choice entries in presence of KCONFIG_ALLCONFIG
+kconfig: do not override symbols already set
+kconfig: fix randconfig tristate detection
+menuconfig: Add "breadcrumbs" navigation aid
+menuconfig: Fix memory leak introduced by jump keys feature
+merge_config.sh: Avoid creating unnessary source softlinks
