@@ -54,7 +54,7 @@ done <scripts/ksync.list
 # Save the changelog between the old cset and now
 printf "Synced-up these changes:\n"
 ( cd "${k_dir}"
-  git log --no-merges --pretty='tformat:%s'     \
+  git log --no-merges --pretty='tformat:%h %s'  \
     "${k_cset_old}..${k_cset}"                  \
     ${k_files}                                  \
 )|tac                                           \
