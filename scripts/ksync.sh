@@ -57,5 +57,6 @@ printf "Synced-up these changes:\n"
   git log --no-merges --pretty='tformat:%s'     \
     "${k_cset_old}..${k_cset}"                  \
     ${k_files}                                  \
-)|tee -a "scripts/ksync.log"                    \
+)|tac                                           \
+ |tee -a "scripts/ksync.log"                    \
  |sed -e 's/^/    /;'
