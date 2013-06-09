@@ -49,3 +49,6 @@ kconfig: fix randconfig tristate detection
 menuconfig: Add "breadcrumbs" navigation aid
 menuconfig: Fix memory leak introduced by jump keys feature
 merge_config.sh: Avoid creating unnessary source softlinks
+57a9c76 scripts/config: fix assignment of parameters for short version of --*-after options
+063f466 mconf: handle keys in empty dialogs
+e983b7b kconfig/menu.c: fix multiple references to expressions in menu_add_prop()
