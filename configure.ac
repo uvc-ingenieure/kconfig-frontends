@@ -278,7 +278,9 @@ AS_IF(
      LIBS=
      AC_CHECK_HEADERS(
         [ncursesw/curses.h ncurses/ncurses.h ncurses/curses.h ncurses.h curses.h],
-        [CURSES_LOC=$ac_header; ncurses_mconf_CPPFLAGS=-DCURSES_LOC=\\\"$ac_header\\\"; break])
+        [CURSES_LOC=$ac_header
+         ncurses_mconf_CPPFLAGS=-DCURSES_LOC=\\\"$ac_header\\\"
+         break # Stupid syntax-coloring in vim: "])
      AS_IF(
         [test -z "$CURSES_LOC"],
         [AS_IF(
