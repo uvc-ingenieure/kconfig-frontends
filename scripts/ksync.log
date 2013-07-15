@@ -52,3 +52,21 @@ merge_config.sh: Avoid creating unnessary source softlinks
 57a9c76 scripts/config: fix assignment of parameters for short version of --*-after options
 063f466 mconf: handle keys in empty dialogs
 e983b7b kconfig/menu.c: fix multiple references to expressions in menu_add_prop()
+40b3136 Finally eradicate CONFIG_HOTPLUG
+fbe98bb kconfig: Fix defconfig when one choice menu selects options that another choice menu depends on
+851f665 kconfig/lxdialog: Add definitions for mininimum (re)size values
+ff7b0c2 kconfig/lxdialog: Use new mininimum resize definitions in conf_choice()
+1376391 kconfig/lxdialog: handle newline characters in print_autowrap()
+4f2de3e mconf: use function calls instead of ncurses' variables LINES and COLS
+e0b4260 nconf: use function calls instead of ncurses' variables LINES and COLS
+1278ebd mconf/nconf: mark empty menus/menuconfigs different from non-empty ones
+7387778 scripts/config: replace hard-coded script name by a dynamic value
+e6abf12 kconfig/conf: fix randconfig setting multiple symbols in a choice
+e85ac12 kconfig/conf: accept a base-16 seed for randconfig
+a5f6d79 kconfig/conf: print the seed used to initialise the RNG for randconfig
+193b40a kconfig: sort found symbols by relevance
+a1ce636 kconfig/[mn]conf: make it explicit in the search box that a regexp is possible
+3b9a19e kconfig: loop as long as we changed some symbols in randconfig
+8357b48 kconfig: fix randomising choice entries in presence of KCONFIG_ALLCONFIG
+490f161 Revert "kconfig: fix randomising choice entries in presence of KCONFIG_ALLCONFIG"
+b57caaa kconfig: allow "hex" and "range" to support longs
