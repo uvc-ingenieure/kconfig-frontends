@@ -70,3 +70,17 @@ a1ce636 kconfig/[mn]conf: make it explicit in the search box that a regexp is po
 8357b48 kconfig: fix randomising choice entries in presence of KCONFIG_ALLCONFIG
 490f161 Revert "kconfig: fix randomising choice entries in presence of KCONFIG_ALLCONFIG"
 b57caaa kconfig: allow "hex" and "range" to support longs
+9e554dd Documentation/kconfig: more concise and straightforward search explanation
+26e933e kconfig: avoid multiple calls to strlen
+f6eb6e4 kconfig/[mn]conf: shorten title in search-box
+803b351 kconfig: minor style fixes in symbol-search code
+1407f97 kconfig: don't allocate n+1 elements in temporary array
+508382a kconfig: simplify symbol-search code
+129784a kconfig: switch to "long long" for sanity
+83e8b90 scripts/config: use sed's POSIX interface
+04b19b7 kconfig: silence warning when parsing auto.conf when a symbol has changed type
+6bf2e84 diffconfig: Gracefully exit if the default config files are not present
+c8272fa diffconfig: Update script to support python versions 2.5 through 3.3
+6902dcc kconfig: do not special-case 'MODULES' symbol
+e062781 kconfig: do not allow more than one symbol to have 'option modules'
+86eb781 scripts/config: fix variable substitution command
