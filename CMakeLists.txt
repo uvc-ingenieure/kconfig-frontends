@@ -1,0 +1,49 @@
+cmake_minimum_required(VERSION 2.8)
+project(kconfig)
+
+set(PROJECT_VERSION_MAJOR "3")
+set(PROJECT_VERSION_MINOR "9")
+set(PROJECT_VERSION_PATCH "0")
+set(PROJECT_VERSION "${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}.${PROJECT_VERSION_PATCH}")
+set(PROJECT_VENDOR "UVC Ingenieure")
+
+get_filename_component(ROOT_DIR "${CMAKE_CURRENT_LIST_FILE}" PATH)
+set(CMAKE_MODULE_PATH "${ROOT_DIR}/cmake" ${CMAKE_MODULE_PATH})
+
+set(EXECUTABLE_OUTPUT_PATH "${CMAKE_BINARY_DIR}/bin")
+
+include_directories(libs)
+
+if (UNIX)
+  set(BIN_INSTALL_DIR "bin")
+else ()
+  set(BIN_INSTALL_DIR ".")
+  set(DOC_INSTALL_DIR ".")
+  set(LOCALES_INSTALL_DIR "${BIN_INSTALL_DIR}/locale")
+endif ()
+
+add_subdirectory(libs)
+add_subdirectory(frontends)
+
+
+#
+# CPack
+#
+set(CPACK_PACKAGE_VERSION_MAJOR "${PROJECT_VERSION_MAJOR}")
+set(CPACK_PACKAGE_VERSION_MINOR "${PROJECT_VERSION_MINOR}")
+set(CPACK_PACKAGE_VERSION_PATCH "${PROJECT_VERSION_PATCH}")
+set(CPACK_PACKAGE_VERSION "${PROJECT_VERSION}")
+set(CPACK_PACKAGE_VENDOR "${PROJECT_VENDOR}")
+
+if (WIN32)
+    set(CPACK_GENERATOR "ZIP")
+elseif (UNIX)
+    set(CPACK_GENERATOR "TBZ2")
+endif ()
+
+set(CPACK_SYSTEM_NAME "${CMAKE_SYSTEM_NAME}-${CMAKE_SYSTEM_PROCESSOR}")
+
+include(CPack)
+
+set(CMAKE_INSTALL_SYSTEM_RUNTIME_DESTINATION "${BIN_INSTALL_DIR}")
+include(InstallRequiredSystemLibraries)
