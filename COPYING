@@ -1,3 +1,5 @@
+This package contains the PDCurses library. For license information
+related to PDCurses see libs/pdcurses-3.4/README
 
 The kconfig parser and frontends are extracted from the Linux kernel
 source tree, which is covered by the GPLv2 only. As Linus Torvalds puts it:
