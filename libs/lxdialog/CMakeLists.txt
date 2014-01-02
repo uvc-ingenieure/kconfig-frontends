@@ -25,8 +25,6 @@ else ()
 
 endif ()
 
-message("INCLUDE DIRS: ${lxdialog_INCLUDE_DIRS}")
-
 add_definitions(${lxdialog_DEFINES})
 include_directories(
 	${lxdialog_INCLUDE_DIRS}

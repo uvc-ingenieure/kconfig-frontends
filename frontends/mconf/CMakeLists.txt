@@ -12,21 +12,22 @@ include_directories(
 	${LibIntl_INCLUDE_DIRS}
 )
 
-add_executable(mconf
+set(TARGET_NAME kconfig-mconf)
+
+add_executable(${TARGET_NAME}
   mconf.c
 )
 
-target_link_libraries(mconf
+target_link_libraries(${TARGET_NAME}
   ${kparser_LIBRARIES}
   ${lxdialog_LIBRARIES}
   ${CURSES_NCURSES_LIBRARIES}
 )
 
-set(EXECUTABLE "${EXECUTABLE_OUTPUT_PATH}/mconf${CMAKE_EXECUTABLE_SUFFIX}")
+set(EXECUTABLE "${EXECUTABLE_OUTPUT_PATH}/${TARGET_NAME}${CMAKE_EXECUTABLE_SUFFIX}")
 
 if (WIN32)
     get_filename_component(MINGW_PATH "${CMAKE_C_COMPILER}" PATH)
-    install(FILES "${MINGW_PATH}/libiconv-2.dll" DESTINATION ${BIN_INSTALL_DIR})
 endif ()
 
 # install(TARGETS mconf DESTINATION ${BIN_INSTALL_DIR})
@@ -35,4 +36,4 @@ install(CODE "
    fixup_bundle(\"${EXECUTABLE}\"   \"\"   \"\")
    " COMPONENT Runtime)
 
-install(TARGETS mconf DESTINATION ${BIN_INSTALL_DIR})
+install(TARGETS ${TARGET_NAME} DESTINATION ${BIN_INSTALL_DIR})
