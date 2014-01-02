@@ -402,6 +402,8 @@ static int _process_key_event(void)
 
             return (left_key & 0x8000) ? KEY_ALT_L : KEY_ALT_R;
         }
+	case VK_BACK:
+		return KEY_BACKSPACE;
     }
 
     /* The system may emit Ascii or Unicode characters depending on
