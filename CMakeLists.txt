@@ -48,3 +48,5 @@ include(CPack)
 
 set(CMAKE_INSTALL_SYSTEM_RUNTIME_DESTINATION "${BIN_INSTALL_DIR}")
 include(InstallRequiredSystemLibraries)
+install(FILES "README" "COPYING" DESTINATION ${BIN_INSTALL_DIR})
+
