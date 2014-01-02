@@ -1,0 +1,9 @@
+add_library(pdcurses-win32
+  pdcclip.c
+  pdcdisp.c
+  pdcgetsc.c
+  pdckbd.c
+  pdcscrn.c
+  pdcsetsc.c
+  pdcutil.c
+)
