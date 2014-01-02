@@ -7,7 +7,10 @@
 #include <stdlib.h>
 #include <string.h>
 #include <regex.h>
+
+#ifndef WIN32
 #include <sys/utsname.h>
+#endif
 
 #include "lkc.h"
 
@@ -45,19 +48,25 @@ static void sym_add_default(struct symbol *sym, const char *def)
 void sym_init(void)
 {
 	struct symbol *sym;
-	struct utsname uts;
 	static bool inited = false;
+	const char *release;
+
+#ifdef WIN32
+	release = "WIN32";
+#else
+	struct utsname uts;
+	uname(&uts);
+	release = uts.release;
+#endif
 
 	if (inited)
 		return;
 	inited = true;
 
-	uname(&uts);
-
 	sym = sym_lookup("UNAME_RELEASE", 0);
 	sym->type = S_STRING;
 	sym->flags |= SYMBOL_AUTO;
-	sym_add_default(sym, uts.release);
+	sym_add_default(sym, release);
 }
 
 enum symbol_type sym_get_type(struct symbol *sym)
